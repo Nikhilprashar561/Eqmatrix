@@ -6,7 +6,7 @@ interface HeroVideoProps {
   className?: string;
 }
 
-export function HeroVideo({ className = "" }: HeroVideoProps) {
+export const HeroVideo = React.memo(function HeroVideo({ className = "" }: HeroVideoProps) {
   const videoRefA = useRef<HTMLVideoElement>(null);
   const videoRefB = useRef<HTMLVideoElement>(null);
   const [activeVideo, setActiveVideo] = useState<"A" | "B">("A");
@@ -128,4 +128,4 @@ export function HeroVideo({ className = "" }: HeroVideoProps) {
       </div>
     </div>
   );
-}
+});

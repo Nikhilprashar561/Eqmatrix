@@ -11,12 +11,8 @@ export function HeroSection() {
   const [activeNav, setActiveNav] = useState("#how-it-works");
 
   const navLinks = [
-    { label: "About", href: "#about" },
     { label: "How It Works", href: "#how-it-works" },
     { label: "Levels", href: "#levels" },
-    { label: "Pools", href: "#pools" },
-    { label: "Network", href: "#network" },
-    { label: "Rewards", href: "#rewards" },
     { label: "FAQ", href: "#faq" },
   ];
 
@@ -34,9 +30,7 @@ export function HeroSection() {
   useEffect(() => {
     if (mobileMenuOpen) {
       const originalOverflow = document.body.style.overflow;
-      const originalTouchAction = document.body.style.touchAction;
       document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
 
       const handleKeyDown = (e: KeyboardEvent) => {
         if (e.key === "Escape") setMobileMenuOpen(false);
@@ -45,7 +39,6 @@ export function HeroSection() {
 
       return () => {
         document.body.style.overflow = originalOverflow;
-        document.body.style.touchAction = originalTouchAction;
         window.removeEventListener("keydown", handleKeyDown);
       };
     }
@@ -114,7 +107,7 @@ export function HeroSection() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="lg:hidden p-2 rounded-xl bg-white/80 backdrop-blur-md border border-slate-200 text-slate-700 hover:bg-white transition-colors shrink-0"
+                className="lg:hidden p-2 rounded-xl bg-white/90 border border-slate-200 text-slate-700 hover:bg-white active:scale-90 transition-all shrink-0 cursor-pointer"
                 aria-label="Open Menu"
                 suppressHydrationWarning
               >
@@ -138,93 +131,96 @@ export function HeroSection() {
       </header>
 
       {/* ────────────── RIGHT SLIDE-OVER DRAWER MENU ────────────── */}
-      {/* Placed outside <header> to avoid backdrop-filter containing block trap */}
-      {/* Backdrop Overlay */}
+      {/* High-performance GPU accelerated backdrop overlay */}
       <div
-        className={`fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-[99] lg:hidden transition-opacity duration-300 ${
+        className={`fixed inset-0 bg-slate-900/40 z-[99] lg:hidden transition-opacity duration-200 ease-out will-change-[opacity] ${
           mobileMenuOpen
             ? "opacity-100 pointer-events-auto"
             : "opacity-0 pointer-events-none"
         }`}
         onClick={() => setMobileMenuOpen(false)}
+        onTouchMove={(e) => e.preventDefault()}
         aria-hidden="true"
       />
 
-      {/* Right Drawer Panel */}
+      {/* Right Drawer Panel - Naturally aligned from top, balanced spacing, clean button gap */}
       <div
-        className={`fixed top-0 right-0 bottom-0 z-[100] w-[82vw] max-w-[340px] h-screen h-[100dvh] bg-white shadow-[-16px_0_40px_rgba(15,23,42,0.18)] flex flex-col justify-between p-6 lg:hidden transition-transform duration-300 ease-out ${
+        className={`fixed top-0 right-0 bottom-0 z-[100] w-[80vw] max-w-[320px] sm:max-w-[340px] h-[100dvh] max-h-[100dvh] bg-white shadow-[-16px_0_40px_rgba(15,23,42,0.18)] flex flex-col justify-between p-5 sm:p-6 lg:hidden transform-gpu transition-transform duration-250 ease-[cubic-bezier(0.16,1,0.3,1)] will-change-transform overflow-hidden ${
           mobileMenuOpen ? "translate-x-0 pointer-events-auto" : "translate-x-full pointer-events-none"
         }`}
       >
-        {/* Top Bar: Close Button */}
-        <div className="flex items-center justify-end pb-2">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(false)}
-            className="p-2 -mr-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
-            aria-label="Close Menu"
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              viewBox="0 0 24 24"
+        {/* Top Content Block: Close Button & Navigation Links */}
+        <div className="flex flex-col">
+          {/* Top Bar: Close Button */}
+          <div className="flex items-center justify-end pb-4 shrink-0">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-1.5 -mr-1 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 active:scale-90 transition-all cursor-pointer"
+              aria-label="Close Menu"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+
+          {/* Navigation Links - Natural top alignment matching reference */}
+          <nav className="flex flex-col space-y-2 pt-1">
+            {navLinks.map((link) => {
+              const isActive = activeNav === link.href;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => {
+                    setActiveNav(link.href);
+                    setMobileMenuOpen(false);
+                  }}
+                  className={`group flex items-center justify-between px-4 py-3 sm:py-3.5 rounded-2xl text-[15px] font-bold transition-all ${
+                    isActive
+                      ? "bg-[#edf5ff] text-[#2563eb]"
+                      : "text-slate-800 hover:text-[#2563eb] hover:bg-slate-50 active:bg-slate-100"
+                  }`}
+                >
+                  <span>{link.label}</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
+                      isActive ? "text-[#2563eb]" : "text-slate-400 group-hover:text-[#2563eb]"
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.2"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                    />
+                  </svg>
+                </a>
+              );
+            })}
+          </nav>
         </div>
 
-        {/* Navigation Links with Arrow Glyphs matching reference */}
-        <nav className="flex-1 overflow-y-auto py-2 space-y-1.5 overscroll-contain">
-          {navLinks.map((link) => {
-            const isActive = activeNav === link.href;
-            return (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={() => {
-                  setActiveNav(link.href);
-                  setMobileMenuOpen(false);
-                }}
-                className={`group flex items-center justify-between px-4 py-3.5 rounded-2xl text-[15px] font-bold transition-all ${
-                  isActive
-                    ? "bg-[#edf5ff] text-[#2563eb]"
-                    : "text-slate-800 hover:text-[#2563eb] hover:bg-slate-50"
-                }`}
-              >
-                <span>{link.label}</span>
-                <svg
-                  className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${
-                    isActive ? "text-[#2563eb]" : "text-slate-400 group-hover:text-[#2563eb]"
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-                  />
-                </svg>
-              </a>
-            );
-          })}
-        </nav>
-
-        {/* Bottom Action Section: Connect Wallet Button matching reference */}
-        <div className="pt-4 mt-auto border-t border-slate-100">
+        {/* Bottom Action Section: Connect Wallet Button with appropriate balanced gap */}
+        <div className="pt-4 pb-1 sm:pb-2 border-t border-slate-100 mt-auto shrink-0">
           <Link
             href="/dashboard"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full py-3.5 px-4 rounded-2xl bg-[#1d69f0] hover:bg-blue-700 active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2.5 shadow-md shadow-blue-500/25 transition-all"
+            className="w-full py-3.5 px-4 rounded-2xl bg-[#1d69f0] hover:bg-blue-700 active:scale-[0.98] text-white text-[15px] font-bold flex items-center justify-center gap-2.5 shadow-md shadow-blue-500/25 transition-all cursor-pointer"
           >
             <svg
               className="w-5 h-5 text-white"
