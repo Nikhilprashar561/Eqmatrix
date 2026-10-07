@@ -34,213 +34,114 @@ export function BlindBoxSection() {
           </p>
         </div>
 
-        {/* ===================== 2. HERO ROW (Left Card, 3D Box Center, Right Card) ===================== */}
-        <div className="relative flex flex-col lg:flex-row items-center justify-center gap-6 xl:gap-7">
-          {/* Center 3D Magic Blind Box (shown first on mobile/tablet, centered on desktop) */}
-          <div className="relative flex items-center justify-center w-full max-w-[340px] sm:max-w-[400px] lg:max-w-[440px] xl:max-w-[470px] my-1 lg:my-0 order-1 lg:order-2 shrink-0">
+        {/* ===================== 2. HERO ROW (Current Pool Card & 3D Magic Blind Box) ===================== */}
+        <div className="relative flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12 xl:gap-16 max-w-[920px] mx-auto">
+          {/* Left Card: CURRENT POOL */}
+          <div className="w-full max-w-[340px] sm:max-w-[360px] lg:w-[340px] xl:w-[360px] bg-white rounded-[24px] p-6 sm:p-7 shadow-[0_12px_40px_rgba(15,23,42,0.06)] border border-slate-100 z-10 shrink-0 order-2 lg:order-1">
+            {/* Top row badge */}
+            <div className="flex items-center gap-2 mb-4">
+              <div className="w-6 h-6 rounded-[6px] bg-blue-50 text-[#2563eb] flex items-center justify-center border border-blue-100/80">
+                <svg
+                  className="w-3.5 h-3.5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <circle cx="12" cy="12" r="3" />
+                  <path d="M18 12h.01" />
+                  <path d="M6 12h.01" />
+                </svg>
+              </div>
+              <span className="text-[11px] font-extrabold text-slate-400 tracking-[0.08em] uppercase">
+                CURRENT POOL
+              </span>
+            </div>
+
+            {/* Big Value */}
+            <div className="flex items-baseline">
+              <span className="text-[32px] sm:text-[36px] font-black text-[#0b132b] tracking-tight leading-none">
+                125,420
+              </span>
+              <span className="text-[14px] font-bold text-slate-400 ml-1.5 uppercase">
+                TROB
+              </span>
+            </div>
+
+            {/* Subtext */}
+            <p className="text-[12.5px] font-bold text-[#2563eb] mt-1.5 leading-snug">
+              10% of all platform deposits
+            </p>
+
+            {/* Progress Bar */}
+            <div className="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mt-4">
+              <div className="bg-[#2563eb] h-full rounded-full w-[72%]" />
+            </div>
+
+            {/* Progress Status Row */}
+            <div className="flex items-center justify-between mt-2.5">
+              <div className="flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <span className="text-[11px] text-slate-400 font-medium">
+                  Updates in real-time
+                </span>
+              </div>
+              <span className="text-[11px] font-black text-[#0b132b]">
+                72% Full
+              </span>
+            </div>
+
+            {/* Bottom: Avatars & Eligible Count */}
+            <div className="flex items-center mt-6 pt-1">
+              <div className="flex items-center -space-x-2 shrink-0">
+                <div className="relative w-7 h-7 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                  <Image
+                    src="/blindbox/avatar-redhead.jpg"
+                    alt="Eligible member"
+                    fill
+                    sizes="28px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative w-7 h-7 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                  <Image
+                    src="/blindbox/avatar-striped.jpg"
+                    alt="Eligible member"
+                    fill
+                    sizes="28px"
+                    className="object-cover"
+                  />
+                </div>
+                <div className="relative w-7 h-7 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                  <Image
+                    src="/blindbox/avatar-glasses.jpg"
+                    alt="Eligible member"
+                    fill
+                    sizes="28px"
+                    className="object-cover"
+                  />
+                </div>
+              </div>
+              <span className="text-[12.5px] font-bold text-slate-600 ml-2.5">
+                12,400+ Eligible members
+              </span>
+            </div>
+          </div>
+
+          {/* Right: 3D Magic Blind Box Artwork */}
+          <div className="relative flex items-center justify-center w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[480px] xl:max-w-[500px] shrink-0 order-1 lg:order-2">
             <div className="relative w-full aspect-[597/472] transition-transform duration-500 hover:scale-[1.02]">
               <Image
                 src="/blindbox/blind-box-3d.png"
                 alt="Magic Blind Box"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 470px"
-                className="object-contain drop-shadow-[0_16px_32px_rgba(37,99,235,0.16)]"
+                sizes="(max-width: 768px) 100vw, 500px"
+                className="object-contain drop-shadow-[0_20px_38px_rgba(37,99,235,0.18)]"
               />
-            </div>
-          </div>
-
-          {/* Cards Container: Side-by-side on tablet (md), stacked on mobile, separate columns on desktop (lg) */}
-          <div className="w-full flex flex-col md:flex-row lg:contents items-center justify-center gap-6 order-2">
-            {/* Left Card: CURRENT POOL */}
-            <div className="w-full max-w-[340px] sm:max-w-[310px] lg:w-[280px] xl:w-[295px] bg-white rounded-[24px] p-5 sm:p-6 shadow-[0_10px_35px_rgba(15,23,42,0.05)] border border-slate-100 z-10 shrink-0 lg:order-1">
-              {/* Top row badge */}
-              <div className="flex items-center gap-2 mb-3.5">
-                <div className="w-6 h-6 rounded-[6px] bg-blue-50 text-[#2563eb] flex items-center justify-center border border-blue-100/80">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="2" y="5" width="20" height="14" rx="2" />
-                    <circle cx="12" cy="12" r="3" />
-                    <path d="M18 12h.01" />
-                    <path d="M6 12h.01" />
-                  </svg>
-                </div>
-                <span className="text-[11px] font-extrabold text-slate-400 tracking-[0.08em] uppercase">
-                  CURRENT POOL
-                </span>
-              </div>
-
-              {/* Big Value */}
-              <div className="flex items-baseline">
-                <span className="text-[30px] sm:text-[32px] font-black text-[#0b132b] tracking-tight leading-none">
-                  125,420
-                </span>
-                <span className="text-[13px] font-bold text-slate-400 ml-1.5 uppercase">
-                  TROB
-                </span>
-              </div>
-
-              {/* Subtext */}
-              <p className="text-[12px] font-bold text-[#2563eb] mt-1.5 leading-snug">
-                10% of all platform deposits
-              </p>
-
-              {/* Progress Bar */}
-              <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden mt-4">
-                <div className="bg-[#2563eb] h-full rounded-full w-[72%]" />
-              </div>
-
-              {/* Progress Status Row */}
-              <div className="flex items-center justify-between mt-2.5">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span className="text-[11px] text-slate-400 font-medium">
-                    Updates in real-time
-                  </span>
-                </div>
-                <span className="text-[11px] font-black text-[#0b132b]">
-                  72% Full
-                </span>
-              </div>
-
-              {/* Bottom: Avatars & Eligible Count */}
-              <div className="flex items-center mt-6 pt-1">
-                <div className="flex items-center -space-x-2 shrink-0">
-                  <div className="relative w-7 h-7 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
-                    <Image
-                      src="/blindbox/avatar-redhead.jpg"
-                      alt="Eligible member"
-                      fill
-                      sizes="28px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="relative w-7 h-7 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
-                    <Image
-                      src="/blindbox/avatar-striped.jpg"
-                      alt="Eligible member"
-                      fill
-                      sizes="28px"
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="relative w-7 h-7 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
-                    <Image
-                      src="/blindbox/avatar-glasses.jpg"
-                      alt="Eligible member"
-                      fill
-                      sizes="28px"
-                      className="object-cover"
-                    />
-                  </div>
-                </div>
-                <span className="text-[12px] font-bold text-slate-600 ml-2.5">
-                  12,400+ Eligible members
-                </span>
-              </div>
-            </div>
-
-            {/* Right Card: POSSIBLE REWARDS */}
-            <div className="w-full max-w-[340px] sm:max-w-[360px] lg:w-[330px] xl:w-[350px] bg-white rounded-[24px] p-5 sm:p-6 shadow-[0_10px_35px_rgba(15,23,42,0.05)] border border-slate-100 z-10 shrink-0 lg:order-3">
-              {/* Header Row */}
-              <div className="flex items-center gap-2 mb-2.5">
-                <div className="w-6 h-6 rounded-[6px] bg-blue-50 text-[#2563eb] flex items-center justify-center border border-blue-100/80">
-                  <svg
-                    className="w-3.5 h-3.5"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="20 12 20 22 4 22 4 12" />
-                    <rect x="2" y="7" width="20" height="5" />
-                    <line x1="12" y1="22" x2="12" y2="7" />
-                    <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" />
-                    <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" />
-                  </svg>
-                </div>
-                <span className="text-[11px] font-extrabold text-slate-400 tracking-[0.08em] uppercase">
-                  POSSIBLE REWARDS
-                </span>
-              </div>
-
-              {/* Pill Tag */}
-              <div className="mb-3.5 pl-0.5">
-                <span className="inline-block text-[9.5px] font-black text-[#16a34a] bg-[#f0fdf4] border border-[#bbf7d0] px-2.5 py-0.5 rounded-full uppercase tracking-wider">
-                  100% OF MEMBERS WIN A REWARD
-                </span>
-              </div>
-
-              {/* 2x2 Reward Tiers Grid */}
-              <div className="grid grid-cols-2 gap-2.5">
-                {/* COMMON */}
-                <div className="bg-[#eff6ff] border border-[#dbeafe] rounded-xl p-3 flex flex-col justify-between">
-                  <span className="text-[9.5px] font-extrabold text-[#2563eb] tracking-wider uppercase">
-                    COMMON
-                  </span>
-                  <span className="text-[19px] sm:text-[20px] font-black text-[#0b132b] mt-1 leading-tight">
-                    $0.50
-                  </span>
-                  <span className="text-[9.5px] text-slate-400 font-medium mt-0.5">
-                    Guaranteed minimum
-                  </span>
-                </div>
-
-                {/* UNCOMMON */}
-                <div className="bg-[#f0fbf4] border border-[#dcfce7] rounded-xl p-3 flex flex-col justify-between">
-                  <span className="text-[9.5px] font-extrabold text-[#16a34a] tracking-wider uppercase">
-                    UNCOMMON
-                  </span>
-                  <span className="text-[19px] sm:text-[20px] font-black text-[#0b132b] mt-1 leading-tight">
-                    $0.80
-                  </span>
-                  <span className="text-[9.5px] text-slate-400 font-medium mt-0.5">
-                    20% probability
-                  </span>
-                </div>
-
-                {/* RARE */}
-                <div className="bg-[#faf5ff] border border-[#f3e8ff] rounded-xl p-3 flex flex-col justify-between">
-                  <span className="text-[9.5px] font-extrabold text-[#9333ea] tracking-wider uppercase">
-                    RARE
-                  </span>
-                  <span className="text-[19px] sm:text-[20px] font-black text-[#0b132b] mt-1 leading-tight">
-                    $1.20
-                  </span>
-                  <span className="text-[9.5px] text-slate-400 font-medium mt-0.5">
-                    5% probability
-                  </span>
-                </div>
-
-                {/* LEGENDARY */}
-                <div className="bg-[#fffbeb] border border-[#fef3c7] rounded-xl p-3 flex flex-col justify-between">
-                  <span className="text-[9.5px] font-extrabold text-[#d97706] tracking-wider uppercase">
-                    LEGENDARY
-                  </span>
-                  <span className="text-[19px] sm:text-[20px] font-black text-[#0b132b] mt-1 leading-tight">
-                    $5.00
-                  </span>
-                  <span className="text-[9.5px] text-slate-400 font-medium mt-0.5">
-                    1% probability
-                  </span>
-                </div>
-              </div>
-
-              {/* Footnote */}
-              <p className="text-[10px] text-slate-400 font-normal leading-relaxed mt-3.5">
-                Rewards are distributed in{" "}
-                <strong className="font-bold text-slate-700">TROB tokens</strong> directly to your
-                platform wallet. No gas fees required for claiming.
-              </p>
             </div>
           </div>
         </div>
