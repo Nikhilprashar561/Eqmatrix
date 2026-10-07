@@ -2,20 +2,16 @@
 
 import React, { useState } from "react";
 
-export interface PrivacySectionProps {
-  privacyToggles?: Record<string, boolean>;
-  onTogglePrivacy?: (key: string) => void;
-  visibilitySettings?: Record<string, string>;
-  onCycleVisibility?: (key: string) => void;
-}
+export interface PrivacySectionProps {}
 
-export function PrivacySection({
-  privacyToggles: externalToggles,
-  onTogglePrivacy,
-  visibilitySettings: externalVisibility,
-  onCycleVisibility,
-}: PrivacySectionProps) {
-  const [internalToggles, setInternalToggles] = useState<Record<string, boolean>>({
+export function PrivacySection({}: PrivacySectionProps = {}) {
+  const [visibilitySettings, setVisibilitySettings] = useState({
+    matrixProfile: "Public",
+    earningsVisibility: "Public",
+    referralLink: "Public",
+  });
+
+  const [privacyToggles, setPrivacyToggles] = useState({
     nodeActivity: true,
     levelUpdates: true,
     transactionActivity: false,
@@ -23,37 +19,15 @@ export function PrivacySection({
     productUpdates: true,
   });
 
-  const [internalVisibility, setInternalVisibility] = useState<Record<string, string>>({
-    matrixProfile: "Public",
-    earningsVisibility: "Public",
-    referralLink: "Public",
-  });
-
-  const privacyToggles = externalToggles ?? internalToggles;
-  const visibilitySettings = externalVisibility ?? internalVisibility;
-
-  const togglePrivacy = (key: string) => {
-    if (onTogglePrivacy) {
-      onTogglePrivacy(key);
-    } else {
-      setInternalToggles((prev) => ({
-        ...prev,
-        [key]: !prev[key],
-      }));
-    }
+  const cycleVisibility = (key: keyof typeof visibilitySettings) => {
+    const options = ["Public", "Team Only", "Private"];
+    const current = visibilitySettings[key];
+    const nextIdx = (options.indexOf(current) + 1) % options.length;
+    setVisibilitySettings((prev) => ({ ...prev, [key]: options[nextIdx] }));
   };
 
-  const cycleVisibility = (key: string) => {
-    if (onCycleVisibility) {
-      onCycleVisibility(key);
-    } else {
-      setInternalVisibility((prev) => {
-        const current = prev[key] || "Public";
-        const options = ["Public", "Members", "Private"];
-        const nextIndex = (options.indexOf(current) + 1) % options.length;
-        return { ...prev, [key]: options[nextIndex] };
-      });
-    }
+  const togglePrivacy = (key: keyof typeof privacyToggles) => {
+    setPrivacyToggles((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   return (
@@ -67,12 +41,10 @@ export function PrivacySection({
               Profile Visibility
             </h2>
             <p className="text-[12px] lg:text-[13px] text-[#64748b] mt-0.5">
-              <span className="lg:hidden">Control what other Matrix members can see about your identity, level status, and matrix activity.</span>
-              <span className="hidden lg:inline">Control what other Matrix members can see about your profile, level, and activity.</span>
+              Control what other Matrix members can see about your identity, level status, and matrix activity.
             </p>
           </div>
-          {/* Mobile top-right ID Badge icon */}
-          <div className="lg:hidden text-[#2563eb] flex-shrink-0 mt-0.5">
+          <div className="text-[#2563eb] flex-shrink-0 mt-0.5">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
               <path d="M10 2h4a1 1 0 011 1v2H9V3a1 1 0 011-1z" />
               <rect x="4" y="5" width="16" height="15" rx="2" />
@@ -85,7 +57,7 @@ export function PrivacySection({
         {/* Rows with Dropdown selectors */}
         <div className="space-y-2.5 sm:space-y-3">
           {/* Matrix Profile */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -98,8 +70,7 @@ export function PrivacySection({
                   Matrix Profile
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Allow your basic Matrix profile (name, level, and joined date) to be visible to others.</span>
-                  <span className="hidden lg:inline">Allow your basic Matrix profile (name, level, and joined date) to be visible to other members.</span>
+                  Allow your basic Matrix profile (name, level, and joined date) to be visible to others.
                 </p>
               </div>
             </div>
@@ -114,7 +85,7 @@ export function PrivacySection({
           </div>
 
           {/* Earnings Visibility */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -128,8 +99,7 @@ export function PrivacySection({
                   Earnings Visibility
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Show your total earned yields and reward metrics on your public Matrix profile.</span>
-                  <span className="hidden lg:inline">Show your earnings and rewards on your public Matrix profile.</span>
+                  Show your total earned yields and reward metrics on your public Matrix profile.
                 </p>
               </div>
             </div>
@@ -144,7 +114,7 @@ export function PrivacySection({
           </div>
 
           {/* Referral Link Visibility */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -159,8 +129,7 @@ export function PrivacySection({
                   Referral Link Visibility
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Allow other members to discover and copy your direct network referral link.</span>
-                  <span className="hidden lg:inline">Allow others to see your referral link on your profile.</span>
+                  Allow other members to discover and copy your direct network referral link.
                 </p>
               </div>
             </div>
@@ -185,12 +154,10 @@ export function PrivacySection({
               Activity Visibility
             </h2>
             <p className="text-[12px] lg:text-[13px] text-[#64748b] mt-0.5">
-              <span className="lg:hidden">Control how your Matrix node activity, progression, and transactions are broadcasted.</span>
-              <span className="hidden lg:inline">Control how your Matrix activity is visible to other members.</span>
+              Control how your Matrix node activity, progression, and transactions are broadcasted.
             </p>
           </div>
-          {/* Mobile top-right Sparkle/Burst icon */}
-          <div className="lg:hidden text-[#2563eb] flex-shrink-0 mt-0.5">
+          <div className="text-[#2563eb] flex-shrink-0 mt-0.5">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="1.5" fill="currentColor" />
               <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.64 5.64l2.12 2.12M16.24 16.24l2.12 2.12M5.64 18.36l2.12-2.12M16.24 7.76l2.12-2.12" />
@@ -201,7 +168,7 @@ export function PrivacySection({
         {/* Rows with Toggles */}
         <div className="space-y-2.5 sm:space-y-3">
           {/* Matrix Node Activity */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -214,8 +181,7 @@ export function PrivacySection({
                   Matrix Node Activity
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Show your node placements, dynamic spills, and tree growth milestones.</span>
-                  <span className="hidden lg:inline">Show your node placements and matrix growth activity.</span>
+                  Show your node placements, dynamic spills, and tree growth milestones.
                 </p>
               </div>
             </div>
@@ -238,21 +204,15 @@ export function PrivacySection({
           </div>
 
           {/* Level Updates */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
-                {/* Desktop trophy icon */}
-                <svg className="hidden lg:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M6 9H4a2 2 0 01-2-2V5a2 2 0 012-2h2" />
                   <path d="M18 9h2a2 2 0 002-2V5a2 2 0 00-2-2h-2" />
                   <path d="M4 22h16" />
                   <path d="M10 14.66V17c0 .55-.45 1-1 1H7v4h10v-4h-2c-.55 0-1-.45-1-1v-2.34" />
                   <path d="M18 2H6v7a6 6 0 0012 0V2z" />
-                </svg>
-                {/* Mobile medal icon */}
-                <svg className="lg:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <circle cx="12" cy="8" r="6" />
-                  <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
                 </svg>
               </div>
               <div className="min-w-0 pr-1">
@@ -260,8 +220,7 @@ export function PrivacySection({
                   Level Updates
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Broadcast announcements when you cycle, upgrade, or unlock new matrix tiers.</span>
-                  <span className="hidden lg:inline">Show when you complete a level or unlock a new level.</span>
+                  Broadcast announcements when you cycle, upgrade, or unlock new matrix tiers.
                 </p>
               </div>
             </div>
@@ -284,7 +243,7 @@ export function PrivacySection({
           </div>
 
           {/* Transaction Activity */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -300,8 +259,7 @@ export function PrivacySection({
                   Transaction Activity
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Show your cryptographic transaction history and claim timestamps on your feed.</span>
-                  <span className="hidden lg:inline">Show your transaction history and activity on your profile.</span>
+                  Show your cryptographic transaction history and claim timestamps on your feed.
                 </p>
               </div>
             </div>
@@ -311,7 +269,7 @@ export function PrivacySection({
               aria-checked={privacyToggles.transactionActivity}
               onClick={() => togglePrivacy("transactionActivity")}
               className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 focus:outline-none ${
-                privacyToggles.transactionActivity ? "bg-[#2563eb]" : "bg-[#e2e8f0]"
+                privacyToggles.transactionActivity ? "bg-[#2563eb]" : "bg-[#cbd5e1]"
               }`}
             >
               <span
@@ -334,12 +292,10 @@ export function PrivacySection({
               Data &amp; Personalization
             </h2>
             <p className="text-[12px] lg:text-[13px] text-[#64748b] mt-0.5">
-              <span className="lg:hidden">Manage how telemetry and telemetry signals are handled to improve matrix efficiency.</span>
-              <span className="hidden lg:inline">Manage how your data is used to improve your experience on the Matrix platform.</span>
+              Manage how telemetry and telemetry signals are handled to improve matrix efficiency.
             </p>
           </div>
-          {/* Mobile top-right 4-square grid icon */}
-          <div className="lg:hidden text-[#2563eb] flex-shrink-0 mt-0.5">
+          <div className="text-[#2563eb] flex-shrink-0 mt-0.5">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="3" y="3" width="7" height="7" rx="1.5" />
               <rect x="14" y="3" width="7" height="7" rx="1.5" />
@@ -352,20 +308,13 @@ export function PrivacySection({
         {/* Rows with Toggles */}
         <div className="space-y-2.5 sm:space-y-3">
           {/* Usage Analytics */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
-                {/* Desktop database icon */}
-                <svg className="hidden lg:block" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <ellipse cx="12" cy="5" rx="9" ry="3" />
                   <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
                   <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-                </svg>
-                {/* Mobile analytics line trend icon */}
-                <svg className="lg:hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M3 13l4-4 4 4 6-6" />
-                  <circle cx="16" cy="16" r="3" />
-                  <path d="M18.5 18.5L21 21" />
                 </svg>
               </div>
               <div className="min-w-0 pr-1">
@@ -373,8 +322,7 @@ export function PrivacySection({
                   Usage Analytics
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Help us optimize matrix routing by sharing anonymized dApp performance telemetry.</span>
-                  <span className="hidden lg:inline">Help us improve the platform by allowing anonymous usage analytics.</span>
+                  Help us optimize matrix routing by sharing anonymized dApp performance telemetry.
                 </p>
               </div>
             </div>
@@ -397,7 +345,7 @@ export function PrivacySection({
           </div>
 
           {/* Product Updates & Communications */}
-          <div className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
+          <div className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all">
             <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
               <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -410,8 +358,7 @@ export function PrivacySection({
                   Product Updates &amp; Communications
                 </h3>
                 <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                  <span className="lg:hidden">Receive smart notifications about smart contract revisions, releases, and key DAO votes.</span>
-                  <span className="hidden lg:inline">Receive product updates, new features, and important announcements.</span>
+                  Receive smart notifications about smart contract revisions, releases, and key DAO votes.
                 </p>
               </div>
             </div>

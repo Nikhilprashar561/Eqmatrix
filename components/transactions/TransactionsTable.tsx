@@ -91,8 +91,7 @@ export interface TransactionsTableProps {
 export function TransactionsTable({ copy }: TransactionsTableProps) {
   const [activeTab, setActiveTab] = useState<FilterTab>("All Transactions");
 
-  const desktopTabs: FilterTab[] = ["All Transactions", "Received", "Sent", "Rewards", "Matrix", "Partner", "System"];
-  const mobileTabs: FilterTab[] = ["All Transactions", "Received", "Sent", "Rewards"];
+  const ALL_TABS: FilterTab[] = ["All Transactions", "Received", "Sent", "Rewards", "Matrix", "Partner", "System"];
 
   const filtered = transactions.filter((tx) => {
     if (activeTab === "All Transactions") return true;
@@ -108,17 +107,17 @@ export function TransactionsTable({ copy }: TransactionsTableProps) {
   return (
           <div className="bg-white rounded-2xl border border-[#e2e8f0] shadow-xs overflow-hidden">
 
-            {/* Desktop tab bar */}
-            <div className="hidden lg:flex items-center justify-between px-5 pt-4 pb-0 border-b border-[#f1f5f9] min-w-0 overflow-x-auto no-scrollbar gap-2">
+            {/* Unified tab bar */}
+            <div className="flex items-center justify-between px-3 sm:px-5 pt-3 sm:pt-4 pb-0 border-b border-[#f1f5f9] min-w-0 overflow-x-auto no-scrollbar gap-2">
               <div className="flex items-center gap-0.5 flex-shrink-0">
-                {desktopTabs.map((tab) => (
+                {ALL_TABS.map((tab) => (
                   <button key={tab} type="button" onClick={() => setActiveTab(tab)}
-                    className={`px-4 py-2.5 text-[13px] font-semibold whitespace-nowrap transition-all cursor-pointer border-b-2 -mb-px ${activeTab === tab ? "border-[#2563eb] text-[#2563eb] bg-[#eff6ff] rounded-t-lg" : "border-transparent text-[#64748b] hover:text-[#0f172a]"}`}>
+                    className={`px-3 sm:px-4 py-2 sm:py-2.5 text-[12px] sm:text-[13px] font-semibold whitespace-nowrap transition-all cursor-pointer border-b-2 -mb-px ${activeTab === tab ? "border-[#2563eb] text-[#2563eb] bg-[#eff6ff] rounded-t-lg" : "border-transparent text-[#64748b] hover:text-[#0f172a]"}`}>
                     {tab}
                   </button>
                 ))}
               </div>
-              <div className="flex items-center gap-2 pb-1 flex-shrink-0">
+              <div className="hidden sm:flex items-center gap-2 pb-1 flex-shrink-0">
                 <button type="button" className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#f8fafc] border border-[#e2e8f0] text-[12px] font-medium text-[#334155] hover:bg-[#f1f5f9] cursor-pointer">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
                     <path d="M22 3H2l8 9.46V19l4 2V12.46L22 3z" stroke="#64748b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
@@ -138,9 +137,9 @@ export function TransactionsTable({ copy }: TransactionsTableProps) {
               </div>
             </div>
 
-            {/* Desktop table */}
-            <div className="hidden lg:block overflow-x-auto">
-              <table className="w-full text-[13px]">
+            {/* Table (visible on tablet md 768px and up) */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-[13px] min-w-[760px]">
                 <thead>
                   <tr className="bg-[#f8fafc] border-b border-[#e2e8f0]">
                     <th className="py-3 px-4 text-left text-[11px] font-bold text-[#94a3b8] tracking-wider uppercase w-10">#</th>
@@ -191,18 +190,8 @@ export function TransactionsTable({ copy }: TransactionsTableProps) {
               </table>
             </div>
 
-            {/* Mobile tab bar */}
-            <div className="lg:hidden flex items-center gap-0 overflow-x-auto no-scrollbar px-3 pt-3 border-b border-[#f1f5f9]">
-              {mobileTabs.map((tab) => (
-                <button key={tab} type="button" onClick={() => setActiveTab(tab)}
-                  className={`px-3 py-2 text-[11.5px] font-semibold whitespace-nowrap cursor-pointer border-b-2 -mb-px ${activeTab === tab ? "border-[#2563eb] text-[#2563eb]" : "border-transparent text-[#64748b] hover:text-[#0f172a]"}`}>
-                  {tab}
-                </button>
-              ))}
-            </div>
-
-            {/* Mobile transaction cards */}
-            <div className="lg:hidden divide-y divide-[#f1f5f9]">
+            {/* Mobile transaction cards (< md 768px) */}
+            <div className="md:hidden divide-y divide-[#f1f5f9]">
               {filtered.map((tx) => (
                 <div key={tx.id} className="px-3 py-3.5">
                   <div className="flex items-start justify-between gap-2 mb-2">

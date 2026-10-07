@@ -12,42 +12,49 @@ export function WalletSection({ copy }: WalletSectionProps) {
 
       {/* ── CARD 1: CONNECTED WALLET ── */}
       <div className="bg-white rounded-[22px] border border-[#e8ecf1] p-4 sm:p-5 lg:p-7 shadow-xs w-full">
-
-        {/* Desktop: Title at the top */}
-        <div className="hidden lg:block mb-5">
-          <h2 className="text-[17px] font-bold text-[#0f172a] leading-tight">
+        {/* Title at top */}
+        <div className="mb-4 sm:mb-5">
+          <h2 className="text-[16px] sm:text-[17px] font-bold text-[#0f172a] leading-tight">
             Connected Wallet
           </h2>
-          <p className="text-[13px] text-[#64748b] mt-0.5">
+          <p className="text-[12px] sm:text-[13px] text-[#64748b] mt-0.5">
             Manage your connected wallet and wallet preferences.
           </p>
         </div>
 
         {/* Inner Container: Wallet Address & Status */}
         <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4 lg:p-4.5 border border-[#f1f5f9]">
-          <div className="flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 sm:gap-3.5 min-w-0">
+          <div className="flex sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3 sm:gap-3.5 min-w-0 flex-1">
               <div className="w-10 h-10 rounded-xl bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
                   <rect x="2" y="6" width="20" height="12" rx="2" />
                   <path d="M16 12h.01M2 10h20" />
                 </svg>
               </div>
-              <div className="min-w-0">
-                <p className="text-[10px] font-bold text-[#64748b] tracking-wider uppercase mb-0.5">
-                  WALLET ADDRESS
-                </p>
-                <div className="flex items-center gap-2">
-                  <span className="text-[14px] sm:text-[15px] font-bold font-mono text-[#0f172a] tracking-tight">
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center justify-between sm:justify-start gap-2">
+                  <p className="text-[10px] sm:text-[10.5px] font-bold text-[#64748b] tracking-wider uppercase whitespace-nowrap">
+                    WALLET ADDRESS
+                  </p>
+                  {/* Status Badge on Mobile (< sm) */}
+                  <div className="sm:hidden flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#e0f2fe] text-[#0284c7] text-[10.5px] font-bold flex-shrink-0">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7]" />
+                    Connected
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 mt-0.5 sm:mt-1 min-w-0">
+                  <span className="text-[13.5px] sm:text-[15px] font-bold font-mono text-[#0f172a] tracking-tight truncate">
                     0x8A3F...91F2
                   </span>
                   <button
                     type="button"
                     onClick={() => copy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")}
-                    className="text-[#94a3b8] hover:text-[#2563eb] p-0.5 transition-colors cursor-pointer"
+                    className="text-[#94a3b8] hover:text-[#2563eb] p-1 rounded-md hover:bg-white transition-colors cursor-pointer flex-shrink-0"
                     title="Copy address"
+                    aria-label="Copy address"
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <rect x="9" y="9" width="13" height="13" rx="2" />
                       <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
                     </svg>
@@ -56,10 +63,11 @@ export function WalletSection({ copy }: WalletSectionProps) {
                     href="https://etherscan.io/address/0x8A3F5B89127c4D9081e7492c1945Eb8712391F2"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[#94a3b8] hover:text-[#2563eb] p-0.5 transition-colors cursor-pointer"
+                    className="text-[#94a3b8] hover:text-[#2563eb] p-1 rounded-md hover:bg-white transition-colors cursor-pointer flex-shrink-0"
                     title="View on explorer"
+                    aria-label="View on explorer"
                   >
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                       <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
                       <polyline points="15 3 21 3 21 9" />
                       <line x1="10" y1="14" x2="21" y2="3" />
@@ -69,70 +77,20 @@ export function WalletSection({ copy }: WalletSectionProps) {
               </div>
             </div>
 
-            {/* Status Badge */}
-            <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e0f2fe] text-[#0284c7] text-[11.5px] sm:text-[12px] font-bold flex-shrink-0">
+            {/* Status Badge on Desktop (>= sm) */}
+            <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#e0f2fe] text-[#0284c7] text-[11.5px] sm:text-[12px] font-bold flex-shrink-0">
               <span className="w-1.5 h-1.5 rounded-full bg-[#0284c7]" />
               Connected
             </div>
           </div>
-
-          {/* Mobile-only Buttons inside the inner box */}
-          <div className="lg:hidden mt-3.5 space-y-2.5">
-            <div className="grid grid-cols-2 gap-2.5">
-              <button
-                type="button"
-                onClick={() => copy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")}
-                className="py-2.5 px-3 rounded-xl bg-white border border-[#e2e8f0] text-[#2563eb] text-[12.5px] font-semibold flex items-center justify-center gap-1.5 shadow-2xs hover:bg-[#eff6ff] transition-colors cursor-pointer"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="9" y="9" width="13" height="13" rx="2" />
-                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                </svg>
-                Copy Address
-              </button>
-              <a
-                href="https://etherscan.io/address/0x8A3F5B89127c4D9081e7492c1945Eb8712391F2"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="py-2.5 px-3 rounded-xl bg-white border border-[#e2e8f0] text-[#2563eb] text-[12.5px] font-semibold flex items-center justify-center gap-1.5 shadow-2xs hover:bg-[#eff6ff] transition-colors cursor-pointer"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-                View Explorer
-              </a>
-            </div>
-            <button
-              type="button"
-              className="w-full py-2.5 rounded-xl bg-[#fee2e2] text-[#dc2626] text-[13px] font-bold flex items-center justify-center gap-2 hover:bg-[#fecaca] transition-colors cursor-pointer shadow-2xs"
-            >
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="3 6 5 6 21 6" />
-                <path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2" />
-              </svg>
-              Disconnect Wallet
-            </button>
-          </div>
         </div>
 
-        {/* Mobile: Title at the bottom of Card 1 */}
-        <div className="lg:hidden mt-3.5 px-0.5">
-          <h2 className="text-[16px] font-bold text-[#0f172a] leading-tight">
-            Connected Wallet
-          </h2>
-          <p className="text-[12px] text-[#64748b] mt-0.5">
-            Manage your connected wallet and wallet preferences.
-          </p>
-        </div>
-
-        {/* Desktop: 3 Action Buttons below the inner box */}
-        <div className="hidden lg:flex items-center gap-3 mt-4">
+        {/* Action Buttons */}
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3 mt-4">
           <button
             type="button"
             onClick={() => copy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#eff6ff] text-[#2563eb] text-[13px] font-semibold hover:bg-[#dbeafe] transition-colors cursor-pointer shadow-2xs"
+            className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-[#eff6ff] text-[#2563eb] text-[12.5px] sm:text-[13px] font-semibold hover:bg-[#dbeafe] transition-colors cursor-pointer shadow-2xs"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <rect x="9" y="9" width="13" height="13" rx="2" />
@@ -144,7 +102,7 @@ export function WalletSection({ copy }: WalletSectionProps) {
             href="https://etherscan.io/address/0x8A3F5B89127c4D9081e7492c1945Eb8712391F2"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#eff6ff] text-[#2563eb] text-[13px] font-semibold hover:bg-[#dbeafe] transition-colors cursor-pointer shadow-2xs"
+            className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-[#eff6ff] text-[#2563eb] text-[12.5px] sm:text-[13px] font-semibold hover:bg-[#dbeafe] transition-colors cursor-pointer shadow-2xs"
           >
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
@@ -155,7 +113,7 @@ export function WalletSection({ copy }: WalletSectionProps) {
           </a>
           <button
             type="button"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#fee2e2] text-[#dc2626] text-[13px] font-semibold hover:bg-[#fecaca] transition-colors cursor-pointer shadow-2xs"
+            className="flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-xl bg-[#fee2e2] text-[#dc2626] text-[12.5px] sm:text-[13px] font-semibold hover:bg-[#fecaca] transition-colors cursor-pointer shadow-2xs"
           >
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="3 6 5 6 21 6" />
@@ -166,15 +124,13 @@ export function WalletSection({ copy }: WalletSectionProps) {
         </div>
       </div>
 
-
       {/* ── CARD 2: WALLET INFORMATION ── */}
       <div className="bg-white rounded-[22px] border border-[#e8ecf1] p-4 sm:p-5 lg:p-7 shadow-xs w-full">
         <h2 className="text-[16px] lg:text-[17px] font-bold text-[#0f172a] leading-tight">
           Wallet Information
         </h2>
         <p className="text-[12px] lg:text-[13px] text-[#64748b] mt-0.5 mb-4 lg:mb-5">
-          <span className="lg:hidden">Details about your connected institutional credentials.</span>
-          <span className="hidden lg:inline">Details about your connected wallet.</span>
+          Details about your connected wallet and network.
         </p>
 
         {/* 5 Zebra-striped Rows */}
@@ -241,19 +197,18 @@ export function WalletSection({ copy }: WalletSectionProps) {
         </div>
       </div>
 
-
-      {/* ── CARD 3: WALLET MANAGEMENT (DESKTOP ONLY) ── */}
-      <div className="hidden lg:block bg-white rounded-[22px] border border-[#e8ecf1] p-6 lg:p-7 shadow-xs w-full">
-        <h2 className="text-[17px] font-bold text-[#0f172a] leading-tight">
+      {/* ── CARD 3: WALLET MANAGEMENT ── */}
+      <div className="bg-white rounded-[22px] border border-[#e8ecf1] p-4 sm:p-5 lg:p-7 shadow-xs w-full">
+        <h2 className="text-[16px] sm:text-[17px] font-bold text-[#0f172a] leading-tight">
           Wallet Management
         </h2>
-        <p className="text-[13px] text-[#64748b] mt-0.5 mb-5">
+        <p className="text-[12px] sm:text-[13px] text-[#64748b] mt-0.5 mb-4 sm:mb-5">
           Manage your wallet connection and permissions.
         </p>
 
         <div className="space-y-3">
           {/* Switch Wallet */}
-          <div className="bg-[#f8fafc] rounded-2xl p-4 sm:p-4.5 border border-[#f1f5f9] flex items-center justify-between hover:bg-[#f1f5f9] transition-all cursor-pointer group">
+          <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4.5 border border-[#f1f5f9] flex items-center justify-between hover:bg-[#f1f5f9] transition-all cursor-pointer group">
             <div className="flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-xl bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -265,10 +220,10 @@ export function WalletSection({ copy }: WalletSectionProps) {
                 </svg>
               </div>
               <div>
-                <h3 className="text-[14px] font-bold text-[#0f172a] leading-tight">
+                <h3 className="text-[13.5px] sm:text-[14px] font-bold text-[#0f172a] leading-tight">
                   Switch Wallet
                 </h3>
-                <p className="text-[12.5px] text-[#64748b] mt-0.5">
+                <p className="text-[12px] sm:text-[12.5px] text-[#64748b] mt-0.5">
                   Connect a different wallet to your account.
                 </p>
               </div>
@@ -279,7 +234,7 @@ export function WalletSection({ copy }: WalletSectionProps) {
           </div>
 
           {/* Disconnect Wallet */}
-          <div className="bg-[#f8fafc] rounded-2xl p-4 sm:p-4.5 border border-[#f1f5f9] flex items-center justify-between hover:bg-[#fef2f2] transition-all cursor-pointer group">
+          <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4.5 border border-[#f1f5f9] flex items-center justify-between hover:bg-[#fef2f2] transition-all cursor-pointer group">
             <div className="flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-xl bg-[#fee2e2] text-[#dc2626] flex items-center justify-center flex-shrink-0 shadow-2xs">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -290,10 +245,10 @@ export function WalletSection({ copy }: WalletSectionProps) {
                 </svg>
               </div>
               <div>
-                <h3 className="text-[14px] font-bold text-[#0f172a] leading-tight">
+                <h3 className="text-[13.5px] sm:text-[14px] font-bold text-[#0f172a] leading-tight">
                   Disconnect Wallet
                 </h3>
-                <p className="text-[12.5px] text-[#64748b] mt-0.5">
+                <p className="text-[12px] sm:text-[12.5px] text-[#64748b] mt-0.5">
                   Disconnect your current wallet from this DAO portal.
                 </p>
               </div>
@@ -305,9 +260,8 @@ export function WalletSection({ copy }: WalletSectionProps) {
         </div>
       </div>
 
-
-      {/* ── MOBILE BOTTOM BANNER: YOUR WALLET, YOUR ACCESS (MOBILE ONLY) ── */}
-      <div className="lg:hidden bg-white rounded-[22px] border border-[#e8ecf1] p-4 relative overflow-hidden shadow-xs flex items-center justify-between gap-3">
+      {/* ── CARD 4: YOUR WALLET, YOUR ACCESS (SECURITY REMINDER) ── */}
+      <div className="bg-white rounded-[22px] border border-[#e8ecf1] p-4 sm:p-5 relative overflow-hidden shadow-xs flex items-center justify-between gap-3">
         <div className="flex items-center gap-3.5 z-10">
           <div className="w-11 h-11 rounded-[16px] bg-[#dbe1ff] text-[#2563eb] flex items-center justify-center flex-shrink-0">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -315,17 +269,17 @@ export function WalletSection({ copy }: WalletSectionProps) {
             </svg>
           </div>
           <div>
-            <h3 className="text-[15px] font-bold text-[#0f172a] leading-tight">
+            <h3 className="text-[14.5px] sm:text-[15px] font-bold text-[#0f172a] leading-tight">
               Your Wallet, Your Access
             </h3>
-            <p className="text-[11.5px] text-[#64748b] mt-1 leading-snug max-w-[210px]">
+            <p className="text-[11.5px] sm:text-[12px] text-[#64748b] mt-1 leading-snug max-w-[400px]">
               Your wallet gives you access to the EQUORA_FI Genesis DAO platform. Keep your private key secure and never share it with anyone.
             </p>
           </div>
         </div>
 
         {/* Decorative isometric wireframe cube */}
-        <div className="absolute -right-2 -bottom-2 pointer-events-none opacity-85">
+        <div className="hidden sm:block absolute right-3 -bottom-2 pointer-events-none opacity-85">
           <svg width="72" height="72" viewBox="0 0 60 60" fill="none" stroke="#bfdbfe" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
             <path d="M30 6 L52 18 L52 42 L30 54 L8 42 L8 18 Z" />
             <path d="M30 6 L30 30 L52 18" />

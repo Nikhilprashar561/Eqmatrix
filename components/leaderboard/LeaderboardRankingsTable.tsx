@@ -131,7 +131,7 @@ export function LeaderboardRankingsTable({ handleCopy, copiedAddress }: Leaderbo
               <button
                 type="button"
                 onClick={() => setSortOrder(sortOrder === "desc" ? "asc" : "desc")}
-                className="lg:hidden flex items-center gap-1 text-[12px] font-bold text-[#2563eb] hover:text-blue-700 cursor-pointer active:scale-95 transition-transform"
+                className="md:hidden flex items-center gap-1 text-[12px] font-bold text-[#2563eb] hover:text-blue-700 cursor-pointer active:scale-95 transition-transform"
               >
                 <span>Sort: Volume</span>
                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -140,10 +140,10 @@ export function LeaderboardRankingsTable({ handleCopy, copiedAddress }: Leaderbo
               </button>
             </div>
 
-            {/* ──────── DESKTOP TABLE VIEW ──────── */}
-            <div className="hidden lg:block bg-white rounded-2xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+            {/* ──────── TABLE VIEW (Visible on >= 768px) ──────── */}
+            <div className="hidden md:block bg-white rounded-2xl border border-[#e2e8f0] shadow-xs overflow-hidden">
               <div className="overflow-x-auto">
-                <table className="w-full text-left border-collapse">
+                <table className="w-full text-left border-collapse min-w-[680px]">
                   <thead>
                     <tr className="border-b border-[#e2e8f0] text-[10.5px] font-bold text-[#94a3b8] uppercase tracking-wider bg-[#f8fafc]/50">
                       <th className="py-3.5 px-4 w-16 text-center">#</th>
@@ -288,8 +288,8 @@ export function LeaderboardRankingsTable({ handleCopy, copiedAddress }: Leaderbo
               </div>
             </div>
 
-            {/* ──────── MOBILE CARDS VIEW ──────── */}
-            <div className="lg:hidden flex flex-col gap-2.5">
+            {/* ──────── MOBILE CARDS VIEW (< md 768px) ──────── */}
+            <div className="md:hidden flex flex-col gap-2.5">
               {sortedNodes.map((node) => (
                 <div
                   key={node.id}

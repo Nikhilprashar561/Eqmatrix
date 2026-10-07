@@ -6,7 +6,7 @@ export function MatrixMechanismSection() {
   return (
     <section
       id="levels"
-      className="w-full pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-18 bg-[#f1f5f9] relative z-10"
+      className="w-full pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-18 bg-[#f1f5f9] relative z-10 scroll-mt-[70px]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-start">

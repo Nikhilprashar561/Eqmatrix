@@ -121,7 +121,7 @@ export default function MatrixPage() {
       {/* SIDEBAR (Desktop Fixed, Mobile Slide-Over)                      */}
       {/* ═══════════════════════════════════════════════════════════════ */}
       <aside
-        className={`fixed top-0 left-0 h-full w-[240px] bg-white border-r border-[#e8ecf1] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 h-full w-[240px] bg-white border-r border-[#e8ecf1] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 overflow-y-auto ${
           mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -271,73 +271,51 @@ export default function MatrixPage() {
         </header>
 
         {/* ───────────────────────────────────────────────────────────── */}
-        {/* MOBILE TOP STATUS BAR & HEADER (< lg)                         */}
+        {/* MOBILE HEADER (< lg)                                          */}
         {/* ───────────────────────────────────────────────────────────── */}
         <div className="lg:hidden bg-white border-b border-[#e8ecf1]">
-          {/* iOS / Mobile Status Indicator */}
-          <div className="h-6 px-5 flex items-center justify-between text-[11px] font-semibold text-black tracking-tight pt-1">
-            <span>9:41</span>
-            <div className="flex items-center gap-1.5 text-black">
-              {/* Cellular Signal */}
-              <svg width="13" height="10" viewBox="0 0 14 10" fill="currentColor">
-                <rect x="0" y="7" width="2" height="3" rx="0.5" />
-                <rect x="4" y="4" width="2" height="6" rx="0.5" />
-                <rect x="8" y="2" width="2" height="8" rx="0.5" />
-                <rect x="12" y="0" width="2" height="10" rx="0.5" />
-              </svg>
-              {/* Wifi */}
-              <svg width="12" height="10" viewBox="0 0 16 12" fill="currentColor">
-                <path d="M8 9.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3zm-4.24-3.24a6 6 0 0 1 8.48 0l-1.06 1.06a4.5 4.5 0 0 0-6.36 0L3.76 6.26zm-2.83-2.83a10 10 0 0 1 14.14 0l-1.06 1.06a8.5 8.5 0 0 0-12.02 0L.93 3.43z" />
-              </svg>
-              {/* Battery */}
-              <div className="w-5 h-2.5 border border-black rounded-[3px] p-[1px] flex items-center">
-                <div className="h-full w-full bg-black rounded-[1px]" />
-              </div>
-            </div>
-          </div>
-
           {/* Mobile Main Header */}
-          <div className="px-4 py-2.5 flex items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-[38px] h-[38px] rounded-xl border border-[#e2e8f0] bg-white flex items-center justify-center shadow-xs">
-                <Image
-                  src="/new-logo.png"
-                  alt="EQUORA_FI"
-                  width={28}
-                  height={28}
-                  className="w-[26px] h-[26px] object-contain"
-                  priority
-                />
-              </div>
-              <div className="flex flex-col leading-tight">
-                <span className="text-[14px] font-black text-[#0f172a] tracking-tight">EQUORA_FI</span>
-                <span className="text-[9.5px] font-bold text-[#2563eb] tracking-[0.14em] uppercase">MATRIX</span>
-              </div>
-            </Link>
-
-            {/* Right Controls: Wallet & Hamburger */}
-            <div className="flex items-center gap-2.5">
-              {/* Compact Wallet Pill */}
-              <div
-                onClick={() => handleCopy("0x8A3F4b91E0D124a91F2")}
-                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-[#f1f5f9] border border-[#e2e8f0] text-[10.5px] sm:text-[11px] font-semibold text-[#1e293b] cursor-pointer min-w-0"
-              >
-                <span className="w-2 h-2 rounded-full bg-[#2563eb] flex-shrink-0" />
-                <span className="font-mono truncate">0x8A...91F2</span>
-              </div>
-
-              {/* Hamburger Menu Button */}
+          <div className="px-3 sm:px-4 py-2.5 flex items-center justify-between gap-2">
+            {/* Left: Hamburger + Logo */}
+            <div className="flex items-center gap-2 sm:gap-2.5 min-w-0">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="w-9 h-9 rounded-xl flex items-center justify-center text-[#0f172a] hover:bg-[#f1f5f9] transition-colors flex-shrink-0"
-                aria-label="Open navigation menu"
+                className="p-1.5 -ml-1 rounded-lg hover:bg-[#f1f5f9] text-[#64748b] flex-shrink-0"
+                aria-label="Open navigation sidebar"
               >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+                <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                  <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                 </svg>
               </button>
+
+              <Link href="/" className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+                <div className="w-[34px] h-[34px] sm:w-[38px] sm:h-[38px] rounded-xl border border-[#e2e8f0] bg-white flex items-center justify-center shadow-xs flex-shrink-0">
+                  <Image
+                    src="/new-logo.png"
+                    alt="EQUORA_FI"
+                    width={28}
+                    height={28}
+                    className="w-[24px] h-[24px] sm:w-[26px] sm:h-[26px] object-contain"
+                    priority
+                  />
+                </div>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-[13.5px] sm:text-[14px] font-black text-[#0f172a] tracking-tight">EQUORA_FI</span>
+                  <span className="text-[9px] sm:text-[9.5px] font-bold text-[#2563eb] tracking-[0.14em] uppercase">MATRIX</span>
+                </div>
+              </Link>
+            </div>
+
+            {/* Right Controls: Wallet */}
+            <div className="flex items-center gap-2 flex-shrink-0">
+              <div
+                onClick={() => handleCopy("0x8A3F4b91E0D124a91F2")}
+                className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-[#f1f5f9] border border-[#e2e8f0] text-[10.5px] sm:text-[11px] font-semibold text-[#1e293b] cursor-pointer"
+              >
+                <span className="w-2 h-2 rounded-full bg-[#2563eb] flex-shrink-0" />
+                <span className="font-mono">0x8A...91F2</span>
+              </div>
             </div>
           </div>
         </div>

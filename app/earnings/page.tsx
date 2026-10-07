@@ -104,29 +104,6 @@ export default function EarningsPage() {
 
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] font-sans flex flex-col lg:flex-row antialiased selection:bg-blue-600 selection:text-white">
-      {/* ── MOBILE STATUS BAR ── */}
-      <div className="lg:hidden w-full px-5 pt-3 pb-1 flex items-center justify-between text-[13px] font-semibold text-[#0f172a] bg-white select-none">
-        <span>9:41</span>
-        <div className="flex items-center gap-1.5 text-[#0f172a]">
-          <svg width="15" height="11" viewBox="0 0 17 11" fill="currentColor">
-            <rect x="0" y="8" width="3" height="3" rx="0.5" />
-            <rect x="4.5" y="5.5" width="3" height="5.5" rx="0.5" />
-            <rect x="9" y="3" width="3" height="8" rx="0.5" />
-            <rect x="13.5" y="0" width="3" height="11" rx="0.5" />
-          </svg>
-          <svg width="15" height="12" viewBox="0 0 16 12" fill="currentColor">
-            <path d="M8 9.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
-            <path d="M4.5 7.5a5 5 0 017 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M1.5 4.5a9 9 0 0113 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-          </svg>
-          <svg width="22" height="11" viewBox="0 0 24 12" fill="none">
-            <rect x="0.75" y="0.75" width="20" height="10.5" rx="3" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor" />
-            <path d="M22.5 4.5v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </div>
-      </div>
-
       {/* ── MOBILE OVERLAY ── */}
       {sidebarOpen && (
         <div
@@ -137,7 +114,7 @@ export default function EarningsPage() {
 
       {/* ── SIDEBAR ── */}
       <aside
-        className={`fixed top-0 left-0 h-full w-[240px] bg-white border-r border-[#e8ecf1] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 left-0 h-full w-[240px] bg-white border-r border-[#e8ecf1] z-50 flex flex-col justify-between transition-transform duration-300 ease-in-out lg:translate-x-0 overflow-y-auto ${
           sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
         }`}
       >
@@ -233,11 +210,13 @@ export default function EarningsPage() {
       <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* ── TOP HEADER ── */}
         <header className="sticky top-0 z-30 bg-white border-b border-[#e8ecf1] h-[60px] lg:h-[64px] px-4 lg:px-8 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-3">
+          {/* Mobile Left: Hamburger + Brand */}
+          <div className="flex items-center gap-2 lg:hidden">
             <button
               type="button"
-              className="lg:hidden p-1.5 rounded-lg text-[#64748b] hover:bg-[#f1f5f9] cursor-pointer"
+              className="p-1.5 -ml-1 rounded-lg hover:bg-[#f1f5f9] text-[#64748b] flex-shrink-0 cursor-pointer"
               onClick={() => setSidebarOpen(true)}
+              aria-label="Open navigation sidebar"
             >
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <line x1="3" y1="12" x2="21" y2="12" />
@@ -245,12 +224,26 @@ export default function EarningsPage() {
                 <line x1="3" y1="18" x2="21" y2="18" />
               </svg>
             </button>
+            <Link href="/" className="flex items-center gap-2 cursor-pointer">
+              <Image
+                src="/new-logo.png"
+                alt="EQUORA.FI"
+                width={64}
+                height={64}
+                className="w-[30px] h-[30px] object-contain"
+              />
+              <div className="flex flex-col leading-none">
+                <span className="text-[13.5px] font-extrabold text-[#0f172a] tracking-tight">EQUORA_FI</span>
+                <span className="text-[8.5px] font-bold text-[#2563eb] tracking-[0.14em] uppercase">MATRIX</span>
+              </div>
+            </Link>
+          </div>
 
-            <div className="hidden lg:flex items-center gap-2 text-[#94a3b8] text-[13px] font-medium">
-              <span className="text-[#0f172a] font-bold">EQUORA_FI</span>
-              <span>/</span>
-              <span className="text-[#2563eb] font-semibold">Earnings</span>
-            </div>
+          {/* Desktop Left: Breadcrumb */}
+          <div className="hidden lg:flex items-center gap-2 text-[#94a3b8] text-[13px] font-medium">
+            <span className="text-[#0f172a] font-bold">EQUORA_FI</span>
+            <span>/</span>
+            <span className="text-[#2563eb] font-semibold">Earnings</span>
           </div>
 
           <div className="flex items-center gap-2.5">

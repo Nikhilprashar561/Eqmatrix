@@ -101,29 +101,6 @@ export default function LeaderboardPage() {
 
 return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] font-sans flex flex-col lg:flex-row antialiased selection:bg-blue-600 selection:text-white">
-      {/* ═══════════ MOBILE STATUS BAR (9:41, Signal, Wifi, Battery) ═══════════ */}
-      <div className="lg:hidden w-full px-6 pt-3 pb-1 flex items-center justify-between text-[13px] font-semibold text-[#0f172a] bg-white select-none">
-        <span>9:41</span>
-        <div className="flex items-center gap-1.5 text-[#0f172a]">
-          <svg width="15" height="11" viewBox="0 0 17 11" fill="currentColor">
-            <rect x="0" y="8" width="3" height="3" rx="0.5" />
-            <rect x="4.5" y="5.5" width="3" height="5.5" rx="0.5" />
-            <rect x="9" y="3" width="3" height="8" rx="0.5" />
-            <rect x="13.5" y="0" width="3" height="11" rx="0.5" />
-          </svg>
-          <svg width="15" height="12" viewBox="0 0 16 12" fill="currentColor">
-            <path d="M8 9.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
-            <path d="M4.5 7.5a5 5 0 017 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-            <path d="M1.5 4.5a9 9 0 0113 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
-          </svg>
-          <svg width="22" height="11" viewBox="0 0 24 12" fill="none">
-            <rect x="0.75" y="0.75" width="20" height="10.5" rx="3" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor" />
-            <path d="M22.5 4.5v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
-        </div>
-      </div>
-
       {/* ═══════════ MOBILE SIDEBAR OVERLAY ═══════════ */}
       {sidebarOpen && (
         <div
@@ -134,7 +111,7 @@ return (
 
       {/* ═══════════ SIDEBAR (Desktop Fixed, Mobile Slide-out Drawer) ═══════════ */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 overflow-y-auto ${
           sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"
         }`}
       >
@@ -219,8 +196,20 @@ return (
       <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* ═══════════ TOP HEADER ═══════════ */}
         <header className="sticky top-0 z-30 bg-white border-b border-[#e8ecf1] h-[60px] lg:h-[64px] px-4 lg:px-8 flex items-center justify-between gap-3">
-          {/* Mobile Left: Brand */}
+          {/* Mobile Left: Hamburger + Brand */}
           <div className="flex items-center gap-2 lg:hidden">
+            <button
+              type="button"
+              className="p-1.5 -ml-1 rounded-lg hover:bg-[#f1f5f9] text-[#64748b] flex-shrink-0 cursor-pointer"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open navigation sidebar"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
             <Link href="/" className="flex items-center gap-2 cursor-pointer">
               <div className="flex items-center justify-center flex-shrink-0">
                 <Image
@@ -291,7 +280,7 @@ return (
               <span className="absolute top-2 right-2 w-[7px] h-[7px] bg-[#ef4444] rounded-full border border-white" />
             </button>
 
-            {/* Mobile: Pill with blue dot + 0x8A...91F2 + Hamburger */}
+            {/* Mobile: Pill with blue dot + 0x8A...91F2 */}
             <div className="lg:hidden flex items-center gap-2">
               <button
                 type="button"
@@ -300,18 +289,6 @@ return (
               >
                 <span className="w-2 h-2 rounded-full bg-[#2563eb]" />
                 <span className="font-mono font-semibold text-[#1e40af]">0x8A...91F2</span>
-              </button>
-
-              {/* Mobile hamburger menu toggle */}
-              <button
-                type="button"
-                className="p-1.5 rounded-lg text-[#0f172a] hover:bg-[#f1f5f9] active:bg-[#e2e8f0] cursor-pointer"
-                onClick={() => setSidebarOpen(true)}
-                aria-label="Open menu"
-              >
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                  <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
               </button>
             </div>
 
@@ -326,7 +303,7 @@ return (
                 <path d="M1.5 6.5h13" stroke="#64748b" strokeWidth="1.3" />
                 <circle cx="11.5" cy="9.5" r="1" fill="#64748b" />
               </svg>
-              <span className="text-[12.5px] font-medium text-[#334155] font-mono">0x8A3F . . 91F2</span>
+              <span className="text-[12.5px] font-medium text-[#334155] font-mono whitespace-nowrap">0x8A3F...91F2</span>
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
                 <path d="M2.5 4L5 6.5 7.5 4" stroke="#94a3b8" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
               </svg>

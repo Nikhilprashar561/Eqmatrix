@@ -4,15 +4,15 @@ import React from "react";
 
 export function RecentActivityPanel() {
   return (
-          <div className="bg-white rounded-2xl border border-[#e8ecf1] p-4 lg:p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h3 className="text-[17px] font-extrabold text-[#0f172a]">Recent Activity</h3>
-                <p className="text-[11px] text-[#94a3b8] mt-0.5">
+          <div className="bg-white rounded-2xl border border-[#e8ecf1] p-3.5 sm:p-4 lg:p-6">
+            <div className="flex items-start sm:items-center justify-between gap-2 mb-4">
+              <div className="min-w-0">
+                <h3 className="text-[16px] sm:text-[17px] font-extrabold text-[#0f172a] truncate">Recent Activity</h3>
+                <p className="text-[10.5px] sm:text-[11px] text-[#94a3b8] mt-0.5 leading-tight">
                   Real-time ledger events recorded from your active matrix slots
                 </p>
               </div>
-              <a href="#" className="text-[12px] font-semibold text-[#2563eb] flex items-center gap-1 hover:underline">
+              <a href="#" className="text-[12px] font-semibold text-[#2563eb] flex items-center gap-1 hover:underline flex-shrink-0 whitespace-nowrap">
                 View All <span>→</span>
               </a>
             </div>
@@ -29,7 +29,7 @@ export function RecentActivityPanel() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="text-[13px] font-bold text-[#0f172a] block">New Member Joined</span>
-                  <span className="text-[11px] text-[#94a3b8]">Slot #05 has been filled by 0x3b1...a94c</span>
+                  <span className="text-[11px] text-[#94a3b8] truncate block">Slot #05 has been filled by 0x3b1...a94c</span>
                 </div>
                 <div className="flex flex-col items-end gap-1 flex-shrink-0">
                   <span className="text-[11px] text-[#94a3b8]">2h ago</span>
@@ -50,7 +50,7 @@ export function RecentActivityPanel() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="text-[13px] font-bold text-[#0f172a] block">Reward Received</span>
-                  <span className="text-[11px] text-[#22c55e]">+12.50 TROB direct distribution</span>
+                  <span className="text-[11px] text-[#22c55e] leading-tight block">+12.50 TROB direct distribution</span>
                 </div>
                 <div className="flex flex-col items-end gap-1 flex-shrink-0">
                   <span className="text-[11px] text-[#94a3b8]">5h ago</span>
@@ -73,7 +73,7 @@ export function RecentActivityPanel() {
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="text-[13px] font-bold text-[#0f172a] block">Matrix Progress</span>
-                  <span className="text-[11px] text-[#94a3b8]">8 / 14 nodes filled • Level 1 (57%)</span>
+                  <span className="text-[11px] text-[#94a3b8] leading-tight block">8 / 14 nodes filled • Level 1 (57%)</span>
                 </div>
                 <div className="flex flex-col items-end gap-1 flex-shrink-0">
                   <span className="text-[11px] text-[#94a3b8]">1d ago</span>

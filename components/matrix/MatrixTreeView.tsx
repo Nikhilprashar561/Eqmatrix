@@ -12,16 +12,16 @@ export function MatrixTreeView() {
                       <h2 className="text-[13.5px] sm:text-[14px] font-extrabold text-[#0f172a] uppercase tracking-wide">
                         YOUR 14–NODE MATRIX
                       </h2>
-                      <span className="lg:hidden px-2 py-0.5 rounded-md bg-[#dbeafe] text-[#1d4ed8] text-[10.5px] font-bold">
+                      <span className="px-2 py-0.5 rounded-md bg-[#dbeafe] text-[#1d4ed8] text-[10.5px] font-bold">
                         CYCLE #01
                       </span>
                     </div>
-                    <p className="hidden lg:block text-[12px] text-[#64748b] mt-0.5">
+                    <p className="text-[12px] text-[#64748b] mt-0.5">
                       As new members join, slots are filled automatically, moving you forward.
                     </p>
                   </div>
 
-                  <div className="hidden lg:flex items-center gap-4 text-[11.5px] font-medium text-[#64748b]">
+                  <div className="hidden sm:flex items-center gap-4 text-[11.5px] font-medium text-[#64748b]">
                     <div className="flex items-center gap-1.5">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#2563eb]" />
                       <span>Filled</span>
@@ -38,23 +38,23 @@ export function MatrixTreeView() {
                 </div>
 
                 {/* Legend: Mobile Capsule Bar */}
-                <div className="lg:hidden mt-3 bg-[#f8fafc] border border-[#e2e8f0]/60 rounded-xl px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#475569]">
+                <div className="sm:hidden mt-3 bg-[#f8fafc] border border-[#e2e8f0]/60 rounded-xl px-3 py-2 flex items-center justify-between text-[11px] font-medium text-[#475569]">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-[#2563eb]" />
-                    <span>Filled (Active)</span>
+                    <span>Filled</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#93c5fd]" />
-                    <span>Available</span>
+                    <span className="w-2 h-2 rounded-full border-2 border-[#2563eb] bg-white" />
+                    <span>Open</span>
                   </div>
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-[#e0e7ff]" />
+                    <span className="w-2 h-2 rounded-full border-2 border-[#cbd5e1] bg-white" />
                     <span>Upcoming</span>
                   </div>
                 </div>
 
-                {/* Desktop Matrix Tree */}
-                <div className="hidden lg:flex flex-col items-center pt-6 pb-4 overflow-x-auto w-full max-w-full">
+                {/* Detailed Matrix Tree (Tablet md 768px and up) */}
+                <div className="hidden md:flex flex-col items-center pt-6 pb-4 overflow-x-auto w-full max-w-full">
                   <div className="relative w-[620px] flex flex-col items-center">
                     <div className="z-10 flex flex-col items-center">
                       <div className="px-6 py-2 rounded-xl bg-[#2563eb] text-white text-[12px] font-extrabold flex items-center gap-2 shadow-md shadow-blue-500/20">
@@ -180,8 +180,8 @@ export function MatrixTreeView() {
                   </div>
                 </div>
 
-                {/* Mobile Matrix Tree */}
-                <div className="lg:hidden flex flex-col items-center pt-5 pb-3">
+                {/* Mobile Matrix Tree (< md 768px) */}
+                <div className="md:hidden flex flex-col items-center pt-5 pb-3">
                   <div className="relative w-full max-w-[320px] h-[260px] flex flex-col items-center justify-between">
                     <svg className="absolute inset-0 w-full h-full pointer-events-none" viewBox="0 0 320 260">
                       <line x1="160" y1="36" x2="95" y2="80" stroke="#93c5fd" strokeWidth="1.5" strokeDasharray="3 3" />

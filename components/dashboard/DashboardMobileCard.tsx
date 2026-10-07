@@ -6,7 +6,7 @@ import Image from "next/image";
 export function DashboardMobileCard() {
   return (
           <div className="mt-6 lg:hidden">
-            <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#1e3a5f] to-[#0f172a] p-5">
+            <div className="rounded-2xl overflow-hidden bg-gradient-to-br from-[#1e3a5f] to-[#0f172a] p-4 sm:p-5">
               <div className="flex items-center justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <div className="w-[28px] h-[28px] rounded-full bg-gradient-to-br from-[#2563eb] to-[#1e40af] flex items-center justify-center flex-shrink-0">

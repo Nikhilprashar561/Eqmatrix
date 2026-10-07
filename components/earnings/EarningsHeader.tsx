@@ -9,14 +9,14 @@ export function EarningsHeader() {
   return (
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-3 lg:gap-4">
             <div>
-              {/* Row 1: EARNINGS badge + VERIFIED PROTOCOL (Visible on mobile only in Figma) */}
-              <div className="flex items-center justify-between lg:justify-start gap-2">
+              {/* Row 1: EARNINGS badge + VERIFIED PROTOCOL */}
+              <div className="flex items-center gap-2">
                 <span className="text-[11px] lg:text-[11.5px] font-bold text-[#2563eb] tracking-widest uppercase">
                   EARNINGS
                 </span>
 
-                {/* VERIFIED PROTOCOL Badge (Shown on Mobile as in screenshot) */}
-                <div className="lg:hidden flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#eef2ff] border border-[#e0e7ff] text-[#2563eb] font-bold text-[9.5px] tracking-wider uppercase">
+                {/* VERIFIED PROTOCOL Badge */}
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#eef2ff] border border-[#e0e7ff] text-[#2563eb] font-bold text-[9.5px] tracking-wider uppercase">
                   <svg width="11" height="11" viewBox="0 0 14 14" fill="none">
                     <path
                       d="M7 1.5L2 3.5v4c0 3.5 5 5 5 5s5-1.5 5-5v-4l-5-2z"

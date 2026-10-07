@@ -69,10 +69,9 @@ export function TransactionsStats() {
                   </svg>
                 </div>
               </div>
-              <div className="text-[18px] lg:text-[22px] font-black text-[#0f172a] leading-tight">
-                48 <span className="text-[11px] font-semibold text-[#64748b] hidden lg:inline ml-0.5">Completed</span>
+              <div className="text-[18px] lg:text-[22px] font-black text-[#0f172a] leading-tight flex items-baseline gap-1">
+                48 <span className="text-[11px] font-semibold text-[#64748b]">Completed</span>
               </div>
-              <div className="lg:hidden text-[10px] text-[#64748b] mt-0.5 font-medium">Completed</div>
               <div className="flex items-center justify-between mt-2">
                 <div className="text-[10.5px] font-bold text-[#16a34a] flex items-center gap-0.5">
                   <svg width="9" height="9" viewBox="0 0 24 24" fill="none">

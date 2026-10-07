@@ -111,7 +111,7 @@ export default function DashboardPage() {
 
       {/* ═══════════ SIDEBAR ═══════════ */}
       <aside
-        className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-4 transition-transform duration-200 lg:translate-x-0 ${
+        className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-4 transition-transform duration-200 lg:translate-x-0 overflow-y-auto ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -191,34 +191,36 @@ export default function DashboardPage() {
       {/* ═══════════ MAIN CONTENT AREA ═══════════ */}
       <div className="flex-1 lg:ml-[240px] flex flex-col min-h-screen min-w-0 overflow-x-hidden">
         {/* ═══════════ TOP HEADER ═══════════ */}
-        <header className="sticky top-0 z-30 bg-white border-b border-[#e8ecf1] px-4 lg:px-6 h-[60px] flex items-center justify-between gap-3">
-          {/* Mobile hamburger */}
-          <button
-            type="button"
-            className="lg:hidden p-1.5 rounded-lg hover:bg-[#f1f5f9] text-[#64748b]"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
-              <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-            </svg>
-          </button>
+        <header className="sticky top-0 z-30 bg-white border-b border-[#e8ecf1] px-3 sm:px-4 lg:px-6 h-[60px] flex items-center justify-between gap-2 sm:gap-3">
+          {/* Mobile Left: Hamburger + Logo */}
+          <div className="lg:hidden flex items-center gap-2 sm:gap-2.5 min-w-0">
+            <button
+              type="button"
+              className="p-1.5 -ml-1 rounded-lg hover:bg-[#f1f5f9] text-[#64748b] flex-shrink-0"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open navigation sidebar"
+            >
+              <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                <path d="M3 6h16M3 11h16M3 16h16" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              </svg>
+            </button>
 
-          {/* Mobile logo */}
-          <Link href="/" className="lg:hidden flex items-center gap-2">
-            <div className="flex items-center justify-center flex-shrink-0">
-              <Image
-                src="/new-logo.png"
-                alt="EQUORA.FI"
-                width={100}
-                height={100}
-                className="w-[28px] h-[28px] object-contain"
-              />
-            </div>
-            <span className="text-[13px] font-extrabold text-[#0f172a] tracking-tight">EQUORA_FI</span>
-          </Link>
+            <Link href="/" className="flex items-center gap-1.5 sm:gap-2 min-w-0">
+              <div className="flex items-center justify-center flex-shrink-0">
+                <Image
+                  src="/new-logo.png"
+                  alt="EQUORA.FI"
+                  width={100}
+                  height={100}
+                  className="w-[26px] h-[26px] sm:w-[28px] sm:h-[28px] object-contain"
+                />
+              </div>
+              <span className="text-[13px] font-extrabold text-[#0f172a] tracking-tight whitespace-nowrap">EQUORA_FI</span>
+            </Link>
+          </div>
 
           {/* Search Bar - Desktop only */}
-          <div className="hidden lg:flex items-center flex-1 max-w-[200px] xl:max-w-[360px]">
+          <div className="hidden lg:flex items-center flex-1 max-w-[240px] xl:max-w-[360px]">
             <div className="relative w-full">
               <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#94a3b8]" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="8" />
@@ -226,7 +228,7 @@ export default function DashboardPage() {
               </svg>
               <input
                 type="text"
-                placeholder="Search member ID / wallet / transaction..."
+                placeholder="Search member ID / wallet..."
                 className="w-full h-[38px] pl-9 pr-9 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] text-[13px] text-[#64748b] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#2563eb]/20 focus:border-[#2563eb]"
               />
               <button className="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded bg-[#f1f5f9] flex items-center justify-center">
@@ -238,7 +240,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Right Header Section */}
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
             {/* Protocol Live Badge */}
             <div className="hidden xl:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ecfdf5] border border-[#bbf7d0]">
               <span className="text-[12px] font-semibold text-[#16a34a]">Protocol Live</span>
@@ -256,12 +258,12 @@ export default function DashboardPage() {
             </button>
 
             {/* Wallet Address */}
-            <button className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] hover:bg-[#f1f5f9] min-w-0">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="flex-shrink-0">
+            <button className="flex items-center gap-1 sm:gap-1.5 px-2 sm:px-3 py-1.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] hover:bg-[#f1f5f9] flex-shrink-0">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" className="flex-shrink-0">
                 <rect x="1" y="3" width="12" height="9" rx="2" stroke="#64748b" strokeWidth="1.2" />
                 <path d="M10 8.5a.5.5 0 100-1 .5.5 0 000 1z" fill="#64748b" />
               </svg>
-              <span className="text-[11px] sm:text-[12px] font-medium text-[#475569] truncate">0x8A3F...91F2</span>
+              <span className="text-[11px] sm:text-[12px] font-medium text-[#475569] whitespace-nowrap">0x8A3F...91F2</span>
               <svg width="10" height="10" viewBox="0 0 10 10" fill="none" className="flex-shrink-0">
                 <path d="M2.5 4L5 6.5 7.5 4" stroke="#94a3b8" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
@@ -278,7 +280,7 @@ export default function DashboardPage() {
         </header>
 
         {/* ═══════════ DASHBOARD MAIN CONTENT ═══════════ */}
-        <main className="flex-1 p-4 lg:p-6 overflow-y-auto">
+        <main className="flex-1 p-3 sm:p-4 lg:p-6 overflow-y-auto">
           {/* Welcome Banner */}
           <WelcomeBanner />
 
@@ -286,9 +288,13 @@ export default function DashboardPage() {
           <DashboardStats />
 
           {/* MAIN DASHBOARD GRID: Matrix + Right Panel */}
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_320px] gap-4 lg:gap-5 mb-6">
-            <MatrixTreePanel />
-            <NextPositionPanel />
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_295px] xl:grid-cols-[1fr_320px] gap-4 lg:gap-5 mb-6">
+            <div className="min-w-0">
+              <MatrixTreePanel />
+            </div>
+            <div className="min-w-0">
+              <NextPositionPanel />
+            </div>
           </div>
 
           {/* RECENT ACTIVITY */}

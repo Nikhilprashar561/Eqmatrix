@@ -56,29 +56,13 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] font-sans flex flex-col lg:flex-row antialiased overflow-x-hidden">
 
-      {/* MOBILE STATUS BAR */}
-      <div className="lg:hidden w-full px-4 pt-3 pb-1 flex items-center justify-between text-[13px] font-semibold text-[#0f172a] bg-white select-none">
-        <span>9:41</span>
-        <div className="flex items-center gap-1.5">
-          <svg width="15" height="11" viewBox="0 0 17 11" fill="currentColor">
-            <rect x="0" y="8" width="3" height="3" rx="0.5"/><rect x="4.5" y="5.5" width="3" height="5.5" rx="0.5"/><rect x="9" y="3" width="3" height="8" rx="0.5"/><rect x="13.5" y="0" width="3" height="11" rx="0.5"/>
-          </svg>
-          <svg width="15" height="12" viewBox="0 0 16 12" fill="currentColor">
-            <path d="M8 9.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/><path d="M4.5 7.5a5 5 0 017 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/><path d="M1.5 4.5a9 9 0 0113 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-          </svg>
-          <svg width="22" height="11" viewBox="0 0 24 12" fill="none">
-            <rect x="0.75" y="0.75" width="20" height="10.5" rx="3" stroke="currentColor" strokeWidth="1.5"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-      </div>
-
       {/* MOBILE OVERLAY */}
       {sidebarOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden cursor-pointer" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* SIDEBAR */}
-      <aside className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 ${sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"}`}>
+      <aside className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 overflow-y-auto ${sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"}`}>
         <div className="flex flex-col gap-7">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2.5 cursor-pointer">
@@ -123,7 +107,20 @@ export default function ProfilePage() {
 
         {/* HEADER */}
         <header className="sticky top-0 z-30 bg-white border-b border-[#e8ecf1] h-[60px] lg:h-[64px] px-4 lg:px-8 flex items-center justify-between gap-3">
+          {/* Mobile Left: Hamburger + Logo */}
           <div className="flex items-center gap-2 lg:hidden">
+            <button
+              type="button"
+              className="p-1.5 -ml-1 rounded-lg hover:bg-[#f1f5f9] text-[#64748b] flex-shrink-0 cursor-pointer"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open navigation sidebar"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
             <Link href="/" className="flex items-center gap-2 cursor-pointer">
               <Image src="/new-logo.png" alt="EQUORA.FI" width={64} height={64} className="w-[30px] h-[30px] object-contain" />
               <div className="flex flex-col leading-none">
@@ -153,9 +150,6 @@ export default function ProfilePage() {
               <button type="button" onClick={() => copy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-[#eff6ff] border border-[#dbeafe] text-[11px] font-medium cursor-pointer">
                 <span className="w-2 h-2 rounded-full bg-[#2563eb]"/>
                 <span className="font-mono font-semibold text-[#1e40af]">0x8A...91F2</span>
-              </button>
-              <button type="button" className="p-1.5 rounded-lg hover:bg-[#f1f5f9] cursor-pointer" onClick={() => setSidebarOpen(true)}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
               </button>
             </div>
             <button type="button" onClick={() => copy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")} className="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] hover:bg-[#f1f5f9] cursor-pointer">

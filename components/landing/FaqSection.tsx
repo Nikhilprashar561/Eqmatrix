@@ -37,7 +37,7 @@ export function FaqSection() {
   return (
       <section
         id="faq"
-        className="w-full pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-18 bg-[#f8fafc] relative z-10"
+        className="w-full pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-18 bg-[#f8fafc] relative z-10 scroll-mt-[70px]"
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}

@@ -38,16 +38,9 @@ export function NotificationsSection({
     {
       id: "matrixActivity",
       title: "Matrix Activity",
-      descriptionDesktop: "Get notified when new nodes are added or activity happens in your matrix.",
-      descriptionMobile: "Get notified when new nodes are added or activity happens in your matrix.",
-      iconDesktop: (
+      description: "Get notified when new nodes are added or activity happens in your matrix.",
+      icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <rect x="3" y="5" width="18" height="14" rx="2" />
-          <polyline points="3 7 12 13 21 7" />
-        </svg>
-      ),
-      iconMobile: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <rect x="3" y="5" width="18" height="14" rx="2" />
           <polyline points="3 7 12 13 21 7" />
         </svg>
@@ -56,21 +49,9 @@ export function NotificationsSection({
     {
       id: "levelUpdates",
       title: "Level Updates",
-      descriptionDesktop: "Receive notifications when you complete a level or unlock a new level.",
-      descriptionMobile: "Receive notifications when you complete a level or unlock a new level.",
-      iconDesktop: (
+      description: "Receive notifications when you complete a level or unlock a new level.",
+      icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="3" y1="21" x2="21" y2="21" />
-          <line x1="4" y1="10" x2="20" y2="10" />
-          <polyline points="12 3 20 10 4 10 12 3" />
-          <line x1="6" y1="10" x2="6" y2="21" />
-          <line x1="10" y1="10" x2="10" y2="21" />
-          <line x1="14" y1="10" x2="14" y2="21" />
-          <line x1="18" y1="10" x2="18" y2="21" />
-        </svg>
-      ),
-      iconMobile: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <line x1="3" y1="21" x2="21" y2="21" />
           <line x1="4" y1="10" x2="20" y2="10" />
           <polyline points="12 3 20 10 4 10 12 3" />
@@ -84,16 +65,9 @@ export function NotificationsSection({
     {
       id: "referralJoined",
       title: "New Referral Joined",
-      descriptionDesktop: "Get notified when someone joins using your referral link.",
-      descriptionMobile: "Get notified when someone joins using your referral link.",
-      iconDesktop: (
+      description: "Get notified when someone joins using your referral link.",
+      icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="8" r="6" />
-          <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
-        </svg>
-      ),
-      iconMobile: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="12" cy="8" r="6" />
           <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
         </svg>
@@ -102,36 +76,21 @@ export function NotificationsSection({
     {
       id: "cycleCompletion",
       title: "Cycle Completion",
-      descriptionDesktop: "Receive updates when a matrix cycle is completed.",
-      descriptionMobile: "Receive updates when a matrix cycle is completed.",
-      iconDesktop: (
+      description: "Receive updates when a matrix cycle is completed.",
+      icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
           <polyline points="15 3 21 3 21 9" />
           <line x1="10" y1="14" x2="21" y2="3" />
         </svg>
       ),
-      iconMobile: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21.5 2v6h-6M2.5 22v-6h6" />
-          <path d="M20 11.5a8.5 8.5 0 00-14.7-4.5L2.5 9.5M21.5 14.5l-2.8 2.5a8.5 8.5 0 01-14.7-4.5" />
-        </svg>
-      ),
     },
     {
       id: "earningsReward",
       title: "Earnings / Reward Updates",
-      descriptionDesktop: "Get notified about your earnings, rewards, or credit updates.",
-      descriptionMobile: "Get notified about your earnings, rewards, or credit updates.",
-      iconDesktop: (
+      description: "Get notified about your earnings, rewards, or credit updates.",
+      icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <line x1="18" y1="20" x2="18" y2="10" />
-          <line x1="12" y1="20" x2="12" y2="4" />
-          <line x1="6" y1="20" x2="6" y2="14" />
-        </svg>
-      ),
-      iconMobile: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <line x1="18" y1="20" x2="18" y2="10" />
           <line x1="12" y1="20" x2="12" y2="4" />
           <line x1="6" y1="20" x2="6" y2="14" />
@@ -141,17 +100,10 @@ export function NotificationsSection({
     {
       id: "leaderboardRank",
       title: "Leaderboard Rank Updates",
-      descriptionDesktop: "Receive notifications when your rank changes on the leaderboard.",
-      descriptionMobile: "Receive notifications when your rank changes on the leaderboard.",
-      iconDesktop: (
+      description: "Receive notifications when your rank changes on the leaderboard.",
+      icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-          <path d="M9 12l2 2 4-4" />
-        </svg>
-      ),
-      iconMobile: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3.85 8.62a4 4 0 014.78-4.77 4 4 0 016.74 0 4 4 0 014.78 4.78 4 4 0 010 6.74 4 4 0 01-4.77 4.78 4 4 0 01-6.75 0 4 4 0 01-4.78-4.77 4 4 0 010-6.76z" />
           <path d="M9 12l2 2 4-4" />
         </svg>
       ),
@@ -159,16 +111,9 @@ export function NotificationsSection({
     {
       id: "announcements",
       title: "Product Announcements",
-      descriptionDesktop: "Stay updated with important updates, new features, and platform news.",
-      descriptionMobile: "Stay updated with important updates, new features, and platform news.",
-      iconDesktop: (
+      description: "Stay updated with important updates, new features, and platform news.",
+      icon: (
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M3 11l18-5v12L3 13v-2z" />
-          <path d="M11.6 16.8a3 3 0 11-5.8-1.6" />
-        </svg>
-      ),
-      iconMobile: (
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
           <path d="M3 11l18-5v12L3 13v-2z" />
           <path d="M11.6 16.8a3 3 0 11-5.8-1.6" />
         </svg>
@@ -195,32 +140,23 @@ export function NotificationsSection({
             return (
               <div
                 key={item.id}
-                className="bg-[#f8fafc] rounded-[18px] lg:rounded-2xl p-3 sm:p-3.5 lg:py-4.5 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all"
+                className="bg-[#f8fafc] rounded-2xl p-3 sm:p-3.5 lg:py-4 lg:px-5 border border-[#f1f5f9] flex items-center justify-between gap-3 sm:gap-4 transition-all"
               >
                 <div className="flex items-center gap-3 sm:gap-3.5 lg:gap-4 min-w-0">
-                  {/* Mobile: White rounded box with blue icon */}
-                  <div className="lg:hidden w-11 h-11 rounded-[14px] bg-white flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
-                    {item.iconMobile}
+                  <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-[14px] bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
+                    {item.icon}
                   </div>
 
-                  {/* Desktop: Navy/slate icon placed directly in the row */}
-                  <div className="hidden lg:flex items-center justify-center text-[#0f172a] w-5 h-5 flex-shrink-0">
-                    {item.iconDesktop}
-                  </div>
-
-                  {/* Titles and Subtitles */}
                   <div className="min-w-0 pr-1">
                     <h3 className="text-[13.5px] lg:text-[14px] font-bold text-[#0f172a] leading-tight">
                       {item.title}
                     </h3>
                     <p className="text-[11.5px] sm:text-[12px] lg:text-[12.5px] text-[#64748b] mt-0.5 leading-snug line-clamp-2">
-                      <span className="lg:hidden">{item.descriptionMobile}</span>
-                      <span className="hidden lg:inline">{item.descriptionDesktop}</span>
+                      {item.description}
                     </p>
                   </div>
                 </div>
 
-                {/* Interactive Toggle Switch */}
                 <button
                   type="button"
                   role="switch"
@@ -243,8 +179,8 @@ export function NotificationsSection({
         </div>
       </div>
 
-      {/* ── MOBILE BOTTOM CARD: STAY INFORMED ── */}
-      <div className="lg:hidden bg-white rounded-[22px] border border-[#e8ecf1] p-4 relative overflow-hidden shadow-xs flex items-center justify-between gap-3">
+      {/* ── BOTTOM CARD: STAY INFORMED ── */}
+      <div className="bg-white rounded-[22px] border border-[#e8ecf1] p-4 sm:p-5 relative overflow-hidden shadow-xs flex items-center justify-between gap-3">
         <div className="flex items-center gap-3.5 z-10">
           <div className="w-11 h-11 rounded-[16px] bg-[#dbe1ff] text-[#2563eb] flex items-center justify-center flex-shrink-0">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -253,17 +189,17 @@ export function NotificationsSection({
             </svg>
           </div>
           <div>
-            <h3 className="text-[15px] font-bold text-[#0f172a] leading-tight">
+            <h3 className="text-[14.5px] sm:text-[15px] font-bold text-[#0f172a] leading-tight">
               Stay Informed
             </h3>
-            <p className="text-[11.5px] text-[#64748b] mt-1 leading-snug max-w-[210px]">
+            <p className="text-[11.5px] sm:text-[12px] text-[#64748b] mt-1 leading-snug max-w-[420px]">
               Get real-time updates on your council seat, governance proposals, and important DAO activity.
             </p>
           </div>
         </div>
 
-        {/* Decorative isometric wireframe cube */}
-        <div className="absolute -right-2 -bottom-2 pointer-events-none opacity-85">
+        {/* Decorative isometric wireframe */}
+        <div className="hidden sm:block absolute right-3 -bottom-2 pointer-events-none opacity-85">
           <svg width="72" height="72" viewBox="0 0 60 60" fill="none" stroke="#bfdbfe" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
             <path d="M30 6 L52 18 L52 42 L30 54 L8 42 L8 18 Z" />
             <path d="M30 6 L30 30 L52 18" />

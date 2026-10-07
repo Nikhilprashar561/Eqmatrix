@@ -14,21 +14,11 @@ export function LeaderboardHeader({ timeframe, setTimeframe, handleCopy }: Leade
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-3 lg:gap-4">
             <div>
               {/* Eyebrow: Protocol Leaderboard + Badge */}
-              <div className="flex items-center justify-between lg:justify-start gap-2.5 mb-1.5">
+              <div className="flex items-center gap-2.5 mb-1.5">
                 <span className="text-[11px] lg:text-[11.5px] font-extrabold text-[#2563eb] tracking-wider uppercase">
                   PROTOCOL LEADERBOARD
                 </span>
-
-                {/* Mobile Right: Verified Protocol Badge */}
-                <div className="lg:hidden flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#eff6ff] border border-[#bfdbfe] text-[#2563eb] text-[10.5px] font-bold">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  <span>VERIFIED PROTOCOL</span>
-                </div>
-
-                {/* Desktop: Live On-Chain Badge */}
-                <div className="hidden lg:flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] text-[11px] font-semibold">
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] text-[11px] font-semibold">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#16a34a]" />
                   <span>Live On-Chain</span>
                 </div>
@@ -43,14 +33,14 @@ export function LeaderboardHeader({ timeframe, setTimeframe, handleCopy }: Leade
               </p>
             </div>
 
-            {/* Desktop Timeframe Switcher */}
-            <div className="hidden lg:flex items-center bg-[#f1f5f9] p-1 rounded-xl border border-[#e2e8f0] self-start lg:self-auto">
+            {/* Timeframe Switcher (All Viewports) */}
+            <div className="flex items-center bg-[#f1f5f9] p-0.5 sm:p-1 rounded-xl border border-[#e2e8f0] self-start sm:self-auto">
               {(["All Time", "30 Days", "7 Days"] as const).map((t) => (
                 <button
                   key={t}
                   type="button"
                   onClick={() => setTimeframe(t)}
-                  className={`px-4 py-1.5 rounded-lg text-[12.5px] font-semibold transition-all cursor-pointer ${
+                  className={`px-3 sm:px-4 py-1.5 rounded-lg text-[11.5px] sm:text-[12.5px] font-semibold transition-all cursor-pointer ${
                     timeframe === t
                       ? "bg-[#2563eb] text-white shadow-xs"
                       : "text-[#64748b] hover:text-[#0f172a]"
@@ -92,9 +82,9 @@ export function LeaderboardHeader({ timeframe, setTimeframe, handleCopy }: Leade
                   <button
                     type="button"
                     onClick={() => handleCopy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")}
-                    className="flex items-center gap-1 mt-0.5 text-[11.5px] font-mono text-[#94a3b8] hover:text-[#2563eb] transition-colors cursor-pointer"
+                    className="flex items-center gap-1 mt-0.5 text-[11.5px] font-mono text-[#94a3b8] hover:text-[#2563eb] transition-colors cursor-pointer whitespace-nowrap"
                   >
-                    <span>0x8A3F . . . 91F2</span>
+                    <span className="font-semibold">0x8A3F...91F2</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <rect x="9" y="9" width="13" height="13" rx="2" strokeLinecap="round" strokeLinejoin="round" />
                       <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" strokeLinecap="round" strokeLinejoin="round" />
@@ -105,6 +95,17 @@ export function LeaderboardHeader({ timeframe, setTimeframe, handleCopy }: Leade
 
               {/* Vertical Divider */}
               <div className="h-10 w-[1px] bg-[#e2e8f0]" />
+
+              {/* Rank Column */}
+              <div className="flex flex-col">
+                <span className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider">CURRENT RANK</span>
+                <div className="flex items-center gap-1.5 mt-0.5">
+                  <span className="text-2xl font-black text-[#2563eb] leading-none">#14</span>
+                  <span className="bg-[#ecfdf5] text-[#16a34a] border border-[#bbf7d0] text-[9.5px] font-bold px-2 py-0.5 rounded-full">
+                    Top 1%
+                  </span>
+                </div>
+              </div>
 
               {/* Metric 1: Direct Partners */}
               <div className="flex items-center gap-3">

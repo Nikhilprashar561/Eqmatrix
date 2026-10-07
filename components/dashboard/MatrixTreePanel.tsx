@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export function MatrixTreePanel() {
   return (
-            <div className="bg-white rounded-2xl border border-[#e8ecf1] p-4 lg:p-6">
+            <div className="bg-white rounded-2xl border border-[#e8ecf1] p-3.5 sm:p-4 lg:p-6">
               {/* Header */}
               <div className="flex items-start justify-between mb-1">
                 <div>
@@ -82,24 +82,24 @@ export function MatrixTreePanel() {
                   {/* Level 2: Nodes 3, 4, 5, 6 */}
                   <div className="flex justify-around px-0 lg:px-2">
                     {/* Node 3 - Filled */}
-                    <div className="w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-[#2563eb] text-white flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
+                    <div className="w-[38px] xs:w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-[#2563eb] text-white flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
                       <span>3</span>
-                      <span className="w-[13px] sm:w-[14px] h-[13px] sm:h-[14px] rounded bg-white/20 flex items-center justify-center text-[8px]">+</span>
+                      <span className="w-[12px] xs:w-[13px] sm:w-[14px] h-[12px] xs:h-[13px] sm:h-[14px] rounded bg-white/20 flex items-center justify-center text-[8px]">+</span>
                     </div>
                     {/* Node 4 - Filled */}
-                    <div className="w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-[#2563eb] text-white flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
+                    <div className="w-[38px] xs:w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-[#2563eb] text-white flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
                       <span>4</span>
-                      <span className="w-[13px] sm:w-[14px] h-[13px] sm:h-[14px] rounded bg-white/20 flex items-center justify-center text-[8px]">+</span>
+                      <span className="w-[12px] xs:w-[13px] sm:w-[14px] h-[12px] xs:h-[13px] sm:h-[14px] rounded bg-white/20 flex items-center justify-center text-[8px]">+</span>
                     </div>
                     {/* Node 5 - Open */}
-                    <div className="w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-white border-2 border-[#cbd5e1] text-[#94a3b8] flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
+                    <div className="w-[38px] xs:w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-white border-2 border-[#cbd5e1] text-[#94a3b8] flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
                       <span>5</span>
-                      <span className="w-[13px] sm:w-[14px] h-[13px] sm:h-[14px] rounded bg-[#f1f5f9] flex items-center justify-center text-[8px] text-[#94a3b8]">+</span>
+                      <span className="w-[12px] xs:w-[13px] sm:w-[14px] h-[12px] xs:h-[13px] sm:h-[14px] rounded bg-[#f1f5f9] flex items-center justify-center text-[8px] text-[#94a3b8]">+</span>
                     </div>
                     {/* Node 6 - Open */}
-                    <div className="w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-white border-2 border-[#cbd5e1] text-[#94a3b8] flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
+                    <div className="w-[38px] xs:w-[42px] sm:w-[48px] lg:w-[56px] h-[30px] sm:h-[32px] lg:h-[36px] rounded-lg bg-white border-2 border-[#cbd5e1] text-[#94a3b8] flex items-center justify-between px-1.5 sm:px-2 text-[11px] sm:text-[12px] font-bold">
                       <span>6</span>
-                      <span className="w-[13px] sm:w-[14px] h-[13px] sm:h-[14px] rounded bg-[#f1f5f9] flex items-center justify-center text-[8px] text-[#94a3b8]">+</span>
+                      <span className="w-[12px] xs:w-[13px] sm:w-[14px] h-[12px] xs:h-[13px] sm:h-[14px] rounded bg-[#f1f5f9] flex items-center justify-center text-[8px] text-[#94a3b8]">+</span>
                     </div>
                   </div>
 
@@ -115,7 +115,7 @@ export function MatrixTreePanel() {
                     {[7, 8, 9, 10, 11, 12, 13, 14].map((n) => (
                       <div
                         key={n}
-                        className={`w-[26px] sm:w-[34px] lg:w-[44px] h-[26px] sm:h-[28px] lg:h-[32px] rounded-md sm:rounded-lg flex items-center justify-center text-[10px] sm:text-[11px] lg:text-[12px] font-bold ${
+                        className={`w-[24px] xs:w-[26px] sm:w-[34px] lg:w-[44px] h-[24px] xs:h-[26px] sm:h-[28px] lg:h-[32px] rounded-md sm:rounded-lg flex items-center justify-center text-[9.5px] xs:text-[10px] sm:text-[11px] lg:text-[12px] font-bold ${
                           n <= 10
                             ? "bg-[#2563eb] text-white"
                             : "bg-white border border-[#e2e8f0] text-[#94a3b8]"

@@ -20,7 +20,7 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
         </p>
 
         {/* Inner Box */}
-        <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4 border border-[#f1f5f9] flex items-center justify-between gap-3 mt-3.5 sm:mt-4">
+        <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4 border border-[#f1f5f9] flex flex-wrap items-center justify-between gap-3 mt-3.5 sm:mt-4">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-xl bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -42,12 +42,11 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
                     <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
                   </svg>
                 </button>
-                {/* Desktop inline external icon */}
                 <a
                   href="https://etherscan.io/address/0x8A3F5B89127c4D9081e7492c1945Eb8712391F2"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden lg:inline-block text-[#94a3b8] hover:text-[#2563eb] p-0.5 cursor-pointer transition-colors"
+                  className="text-[#94a3b8] hover:text-[#2563eb] p-0.5 cursor-pointer transition-colors"
                 >
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
@@ -66,46 +65,17 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
               Connected
             </div>
 
-            {/* Desktop inline View Wallet link & External button */}
-            <div className="hidden lg:flex items-center gap-3">
-              <button
-                type="button"
-                className="text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1.5 cursor-pointer transition-colors"
-              >
-                View Wallet
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-              <a
-                href="https://etherscan.io/address/0x8A3F5B89127c4D9081e7492c1945Eb8712391F2"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-white border border-[#e2e8f0] flex items-center justify-center text-[#64748b] hover:text-[#2563eb] hover:bg-[#f8fafc] transition-colors shadow-2xs"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6" />
-                  <polyline points="15 3 21 3 21 9" />
-                  <line x1="10" y1="14" x2="21" y2="3" />
-                </svg>
-              </a>
-            </div>
+            <button
+              type="button"
+              className="text-[12.5px] sm:text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-colors"
+            >
+              View Wallet
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
           </div>
-        </div>
-
-        {/* Mobile bottom View Wallet link */}
-        <div className="flex lg:hidden justify-end mt-3">
-          <button
-            type="button"
-            className="text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer"
-          >
-            View Wallet
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </button>
         </div>
       </div>
 
@@ -120,7 +90,7 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
         </p>
 
         {/* Inner Box */}
-        <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4 border border-[#f1f5f9] flex items-center justify-between gap-3 mt-3.5 sm:mt-4">
+        <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4 border border-[#f1f5f9] flex flex-wrap items-center justify-between gap-3 mt-3.5 sm:mt-4">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-xl bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -143,34 +113,17 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
               Active
             </div>
 
-            {/* Desktop inline Manage Sessions link */}
-            <div className="hidden lg:flex items-center">
-              <button
-                type="button"
-                className="text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1.5 cursor-pointer transition-colors"
-              >
-                Manage Sessions
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-            </div>
+            <button
+              type="button"
+              className="text-[12.5px] sm:text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-colors"
+            >
+              Manage Sessions
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
           </div>
-        </div>
-
-        {/* Mobile bottom Manage Sessions link */}
-        <div className="flex lg:hidden justify-end mt-3">
-          <button
-            type="button"
-            className="text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer"
-          >
-            Manage Sessions
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </button>
         </div>
       </div>
 
@@ -185,7 +138,7 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
         </p>
 
         {/* Inner Box */}
-        <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4 border border-[#f1f5f9] flex items-center justify-between gap-3 mt-3.5 sm:mt-4">
+        <div className="bg-[#f8fafc] rounded-2xl p-3.5 sm:p-4 border border-[#f1f5f9] flex flex-wrap items-center justify-between gap-3 mt-3.5 sm:mt-4">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-xl bg-white border border-[#e2e8f0] flex items-center justify-center text-[#2563eb] shadow-2xs flex-shrink-0">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
@@ -204,34 +157,17 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
               Not Enabled
             </div>
 
-            {/* Desktop inline Enable link */}
-            <div className="hidden lg:flex items-center">
-              <button
-                type="button"
-                className="text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1.5 cursor-pointer transition-colors"
-              >
-                Enable
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </button>
-            </div>
+            <button
+              type="button"
+              className="text-[12.5px] sm:text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer transition-colors"
+            >
+              Enable
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
           </div>
-        </div>
-
-        {/* Mobile bottom Enable link */}
-        <div className="flex lg:hidden justify-end mt-3">
-          <button
-            type="button"
-            className="text-[13px] font-bold text-[#2563eb] hover:text-[#1d4ed8] flex items-center gap-1 cursor-pointer"
-          >
-            Enable
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </button>
         </div>
       </div>
 
@@ -262,7 +198,6 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
 
         {/* Activity List */}
         <div className="space-y-3 sm:space-y-3.5">
-
           {/* 1. Wallet Connected */}
           <div className="flex items-center justify-between gap-3 py-1">
             <div className="flex items-center gap-3 min-w-0">
@@ -278,7 +213,7 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-end lg:items-center gap-1 lg:gap-4 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-4 flex-shrink-0">
               <span className="text-[12px] text-[#64748b] whitespace-nowrap">Aug 12, 2026, 10:24 AM</span>
               <span className="px-2.5 py-0.5 rounded-md bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] text-[11px] font-bold">
                 Success
@@ -302,7 +237,7 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-end lg:items-center gap-1 lg:gap-4 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-4 flex-shrink-0">
               <span className="text-[12px] text-[#64748b] whitespace-nowrap">Aug 12, 2026, 10:24 AM</span>
               <span className="px-2.5 py-0.5 rounded-md bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] text-[11px] font-bold">
                 Success
@@ -324,14 +259,13 @@ export function SecuritySection({ copy }: SecuritySectionProps) {
               </div>
             </div>
 
-            <div className="flex flex-col lg:flex-row items-end lg:items-center gap-1 lg:gap-4 flex-shrink-0">
+            <div className="flex flex-col sm:flex-row items-end sm:items-center gap-1 sm:gap-4 flex-shrink-0">
               <span className="text-[12px] text-[#64748b] whitespace-nowrap">Aug 12, 2026, 10:20 AM</span>
               <span className="px-2.5 py-0.5 rounded-md bg-[#eff6ff] border border-[#bfdbfe] text-[#2563eb] text-[11px] font-bold">
                 Info
               </span>
             </div>
           </div>
-
         </div>
       </div>
 

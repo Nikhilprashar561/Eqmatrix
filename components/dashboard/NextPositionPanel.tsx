@@ -8,7 +8,7 @@ export function NextPositionPanel() {
   return (
             <div className="flex flex-col gap-4 lg:gap-5">
               {/* NEXT POSITION */}
-              <div className="bg-white rounded-2xl border border-[#e8ecf1] p-4 lg:p-5">
+              <div className="bg-white rounded-2xl border border-[#e8ecf1] p-3.5 sm:p-4 lg:p-5">
                 <div className="flex items-start justify-between mb-3">
                   <span className="text-[11px] font-bold text-[#475569] uppercase tracking-wide">Next Position</span>
                   <span className="text-[11px] font-semibold text-[#2563eb]">Level 2 Upgrade</span>
@@ -22,28 +22,30 @@ export function NextPositionPanel() {
                   <div className="w-[57%] h-full rounded-full bg-[#2563eb]" />
                 </div>
                 <p className="text-[11px] text-[#94a3b8] mb-4">
-                  <span className="hidden lg:inline">6 positions remaining to unlock Slot 02.</span>
-                  <span className="lg:hidden">6 positions remaining to complete the cycle and unlock Slot 02 automatic slot payout.</span>
+                  6 positions remaining to complete the cycle and unlock Slot 02.
                 </p>
-                {/* Auto-Progression Toggle */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                {/* Auto-Progression Toggle Switch */}
+                <div className="flex items-center justify-between gap-3">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className="flex-shrink-0">
                       <path d="M4 8h8M8 4v8" stroke="#64748b" strokeWidth="1.3" strokeLinecap="round" />
                       <circle cx="8" cy="8" r="6" stroke="#64748b" strokeWidth="1.2" />
                     </svg>
-                    <span className="text-[12px] font-semibold text-[#0f172a]">Auto-Progression Enabled</span>
+                    <span className="text-[12px] font-semibold text-[#0f172a] truncate">Auto-Progression Enabled</span>
                   </div>
                   <button
                     type="button"
+                    role="switch"
+                    aria-checked={autoProgression}
                     onClick={() => setAutoProgression(!autoProgression)}
-                    className={`relative w-[40px] h-[22px] rounded-full transition-colors ${
-                      autoProgression ? "bg-[#2563eb]" : "bg-[#e2e8f0]"
+                    className={`relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full transition-colors duration-200 ease-in-out p-0.5 focus:outline-none ${
+                      autoProgression ? "bg-[#2563eb]" : "bg-[#cbd5e1]"
                     }`}
                   >
                     <span
-                      className={`absolute top-[2px] w-[18px] h-[18px] rounded-full bg-white shadow transition-transform ${
-                        autoProgression ? "translate-x-[20px]" : "translate-x-[2px]"
+                      aria-hidden="true"
+                      className={`pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow-sm ring-0 transition duration-200 ease-in-out ${
+                        autoProgression ? "translate-x-5" : "translate-x-0"
                       }`}
                     />
                   </button>
@@ -51,7 +53,7 @@ export function NextPositionPanel() {
               </div>
 
               {/* CURRENT EARNINGS */}
-              <div className="bg-white rounded-2xl border border-[#e8ecf1] p-4 lg:p-5">
+              <div className="bg-white rounded-2xl border border-[#e8ecf1] p-3.5 sm:p-4 lg:p-5">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-[16px] font-extrabold text-[#0f172a]">Current Earnings</h3>
                   <button className="w-[28px] h-[28px] rounded-lg bg-[#f8fafc] border border-[#e2e8f0] flex items-center justify-center">
@@ -61,18 +63,22 @@ export function NextPositionPanel() {
                     </svg>
                   </button>
                 </div>
-                <div className="flex gap-6 mb-5">
+                <div className="flex gap-4 sm:gap-6 mb-5">
                   <div>
                     <span className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider">Total Earned</span>
-                    <div className="text-[28px] font-extrabold text-[#0f172a] leading-none mt-1">142.50</div>
-                    <span className="text-[12px] font-semibold text-[#94a3b8]">TROB</span>
-                    <div className="text-[10px] text-[#64748b] mt-0.5 lg:hidden">≈$21.01</div>
+                    <div className="text-[24px] sm:text-[28px] font-extrabold text-[#0f172a] leading-none mt-1">142.50</div>
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <span className="text-[12px] font-semibold text-[#94a3b8]">TROB</span>
+                      <span className="text-[11px] font-medium text-[#64748b]">≈$21.01</span>
+                    </div>
                   </div>
                   <div>
                     <span className="text-[10px] font-bold text-[#94a3b8] uppercase tracking-wider">Available</span>
-                    <div className="text-[28px] font-extrabold text-[#2563eb] leading-none mt-1">87.20</div>
-                    <span className="text-[12px] font-semibold text-[#94a3b8]">TROB</span>
-                    <div className="text-[10px] text-[#64748b] mt-0.5 lg:hidden">≈$13.25</div>
+                    <div className="text-[24px] sm:text-[28px] font-extrabold text-[#2563eb] leading-none mt-1">87.20</div>
+                    <div className="flex items-center gap-1.5 mt-1">
+                      <span className="text-[12px] font-semibold text-[#94a3b8]">TROB</span>
+                      <span className="text-[11px] font-medium text-[#64748b]">≈$13.25</span>
+                    </div>
                   </div>
                 </div>
                 {/* Withdraw Button */}

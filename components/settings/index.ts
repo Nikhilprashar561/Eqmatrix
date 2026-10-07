@@ -1,6 +1,6 @@
 export { SettingsHeader } from "./SettingsHeader";
-export { SettingsTabs } from "./SettingsTabs";
-export type { SettingsTabsProps } from "./SettingsTabs";
+export { SettingsTabs, SETTINGS_TABS } from "./SettingsTabs";
+export type { SettingsTabsProps, SettingsTabItem } from "./SettingsTabs";
 export { AccountSection } from "./AccountSection";
 export type { AccountSectionProps } from "./AccountSection";
 export { SecuritySection } from "./SecuritySection";

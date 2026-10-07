@@ -6,6 +6,7 @@ import Link from "next/link";
 import {
   SettingsHeader,
   SettingsTabs,
+  SETTINGS_TABS,
   AccountSection,
   SecuritySection,
   NotificationsSection,
@@ -16,7 +17,31 @@ import {
 export default function SettingsPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
-  const [activeTab, setActiveTab] = useState("Privacy");
+  const [activeTab, setActiveTab] = useState("Account");
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const currentIndex = SETTINGS_TABS.findIndex((t) => t.id === activeTab);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart === null || touchEnd === null) return;
+    const distance = touchStart - touchEnd;
+    const minSwipeDistance = 60;
+    if (distance > minSwipeDistance && currentIndex < SETTINGS_TABS.length - 1) {
+      setActiveTab(SETTINGS_TABS[currentIndex + 1].id);
+    } else if (distance < -minSwipeDistance && currentIndex > 0) {
+      setActiveTab(SETTINGS_TABS[currentIndex - 1].id);
+    }
+  };
 
   const copy = (t: string) => {
     if (typeof navigator !== "undefined" && navigator.clipboard) {
@@ -60,29 +85,13 @@ export default function SettingsPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-[#0f172a] font-sans flex flex-col lg:flex-row antialiased overflow-x-hidden">
 
-      {/* ── MOBILE STATUS BAR ── */}
-      <div className="lg:hidden w-full px-4 pt-3 pb-1 flex items-center justify-between text-[13px] font-semibold text-[#0f172a] bg-white select-none">
-        <span>9:41</span>
-        <div className="flex items-center gap-1.5">
-          <svg width="15" height="11" viewBox="0 0 17 11" fill="currentColor">
-            <rect x="0" y="8" width="3" height="3" rx="0.5"/><rect x="4.5" y="5.5" width="3" height="5.5" rx="0.5"/><rect x="9" y="3" width="3" height="8" rx="0.5"/><rect x="13.5" y="0" width="3" height="11" rx="0.5"/>
-          </svg>
-          <svg width="15" height="12" viewBox="0 0 16 12" fill="currentColor">
-            <path d="M8 9.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/><path d="M4.5 7.5a5 5 0 017 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/><path d="M1.5 4.5a9 9 0 0113 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none"/>
-          </svg>
-          <svg width="22" height="11" viewBox="0 0 24 12" fill="none">
-            <rect x="0.75" y="0.75" width="20" height="10.5" rx="3" stroke="currentColor" strokeWidth="1.5"/><rect x="2.5" y="2.5" width="13" height="7" rx="1.5" fill="currentColor"/><path d="M22.5 4.5v3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
-          </svg>
-        </div>
-      </div>
-
       {/* ── MOBILE OVERLAY ── */}
       {sidebarOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 lg:hidden cursor-pointer" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* ── SIDEBAR ── */}
-      <aside className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 ${sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"}`}>
+      <aside className={`fixed top-0 bottom-0 left-0 z-50 w-[240px] bg-white border-r border-[#e8ecf1] flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out lg:translate-x-0 overflow-y-auto ${sidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"}`}>
         <div className="flex flex-col gap-7">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-2.5 cursor-pointer">
@@ -146,7 +155,19 @@ export default function SettingsPage() {
           </div>
 
           {/* Mobile brand & hamburger */}
-          <div className="lg:hidden flex items-center gap-2.5">
+          <div className="lg:hidden flex items-center gap-2">
+            <button
+              type="button"
+              className="p-1.5 -ml-1 rounded-lg hover:bg-[#f1f5f9] text-[#64748b] flex-shrink-0 cursor-pointer"
+              onClick={() => setSidebarOpen(true)}
+              aria-label="Open navigation sidebar"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <line x1="3" y1="12" x2="21" y2="12" />
+                <line x1="3" y1="6" x2="21" y2="6" />
+                <line x1="3" y1="18" x2="21" y2="18" />
+              </svg>
+            </button>
             <Link href="/" className="flex items-center gap-2">
               <Image src="/new-logo.png" alt="EQUORA_FI" width={32} height={32} className="w-[32px] h-[32px] object-contain" />
               <div className="flex flex-col leading-none">
@@ -171,9 +192,6 @@ export default function SettingsPage() {
               <button type="button" onClick={() => copy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-[#eff6ff] border border-[#dbeafe] text-[11px] font-medium cursor-pointer">
                 <span className="w-2 h-2 rounded-full bg-[#2563eb]"/>
                 <span className="font-mono font-semibold text-[#1e40af]">0x8A...91F2</span>
-              </button>
-              <button type="button" className="p-1.5 rounded-lg hover:bg-[#f1f5f9] cursor-pointer" onClick={() => setSidebarOpen(true)}>
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/></svg>
               </button>
             </div>
             <button type="button" onClick={() => copy("0x8A3F5B89127c4D9081e7492c1945Eb8712391F2")} className="hidden lg:flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-[#f8fafc] border border-[#e2e8f0] hover:bg-[#f1f5f9] cursor-pointer">
@@ -203,15 +221,88 @@ export default function SettingsPage() {
           {/* 1. Header Row */}
           <SettingsHeader />
 
-          {/* 2. Sub-Navigation Tabs */}
+          {/* 2. Sub-Navigation Tabs Slider */}
           <SettingsTabs activeTab={activeTab} setActiveTab={setActiveTab} />
 
-          {/* 3. Tab Content Sections */}
-          {activeTab === "Account" && <AccountSection copy={copy} />}
-          {activeTab === "Security" && <SecuritySection copy={copy} />}
-          {activeTab === "Notifications" && <NotificationsSection />}
-          {activeTab === "Wallet" && <WalletSection copy={copy} />}
-          {activeTab === "Privacy" && <PrivacySection />}
+          {/* Mobile Quick Section Stepper & Dots */}
+          <div className="flex lg:hidden items-center justify-between px-1 text-[12px] -mt-1">
+            <div className="flex items-center gap-1.5 text-[#64748b]">
+              <span className="font-bold text-[#0f172a]">{SETTINGS_TABS[currentIndex]?.label}</span>
+              <span className="text-[#cbd5e1]">•</span>
+              <span>Section {currentIndex + 1} of {SETTINGS_TABS.length}</span>
+            </div>
+            <div className="flex items-center gap-1.5">
+              {SETTINGS_TABS.map((t, idx) => (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setActiveTab(t.id)}
+                  aria-label={`Switch to ${t.label} section`}
+                  className={`h-1.5 rounded-full transition-all cursor-pointer ${
+                    idx === currentIndex
+                      ? "w-5 bg-[#2563eb]"
+                      : "w-1.5 bg-[#cbd5e1] hover:bg-[#94a3b8]"
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* 3. Tab Content Sections (with mobile swipe support) */}
+          <div
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            className="w-full"
+          >
+            {activeTab === "Account" && <AccountSection copy={copy} />}
+            {activeTab === "Security" && <SecuritySection copy={copy} />}
+            {activeTab === "Notifications" && <NotificationsSection />}
+            {activeTab === "Wallet" && <WalletSection copy={copy} />}
+            {activeTab === "Privacy" && <PrivacySection />}
+          </div>
+
+          {/* 4. Mobile Bottom Section Switcher Slider */}
+          <div className="flex lg:hidden items-center justify-between pt-2 pb-2 gap-2">
+            <button
+              type="button"
+              onClick={() => currentIndex > 0 && setActiveTab(SETTINGS_TABS[currentIndex - 1].id)}
+              disabled={currentIndex === 0}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#e2e8f0] bg-white text-[12px] font-semibold text-[#334155] shadow-2xs transition-all ${
+                currentIndex === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-[#f8fafc] active:scale-98 cursor-pointer"
+              }`}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+              <span>{currentIndex > 0 ? SETTINGS_TABS[currentIndex - 1].label : "First Section"}</span>
+            </button>
+
+            <div className="flex items-center gap-1">
+              {SETTINGS_TABS.map((t, idx) => (
+                <span
+                  key={t.id}
+                  className={`h-1.5 rounded-full transition-all ${
+                    idx === currentIndex ? "w-4 bg-[#2563eb]" : "w-1.5 bg-[#cbd5e1]"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => currentIndex < SETTINGS_TABS.length - 1 && setActiveTab(SETTINGS_TABS[currentIndex + 1].id)}
+              disabled={currentIndex === SETTINGS_TABS.length - 1}
+              className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl border border-[#e2e8f0] bg-white text-[12px] font-semibold text-[#334155] shadow-2xs transition-all ${
+                currentIndex === SETTINGS_TABS.length - 1 ? "opacity-30 cursor-not-allowed" : "hover:bg-[#f8fafc] active:scale-98 cursor-pointer"
+              }`}
+            >
+              <span>{currentIndex < SETTINGS_TABS.length - 1 ? SETTINGS_TABS[currentIndex + 1].label : "Last Section"}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
 
           {/* Bottom spacing */}
           <div className="h-6" />

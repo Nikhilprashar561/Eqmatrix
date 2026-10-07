@@ -20,8 +20,8 @@ export function EarningsStatsGrid({ onWithdrawClick }: EarningsStatsGridProps) {
                     <path d="M2.5 13.5L10 17.5L17.5 13.5" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </div>
-                {/* On mobile: +12.5% pill on top right */}
-                <div className="lg:hidden flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] font-bold text-[11px]">
+                {/* +12.5% pill on top right */}
+                <div className="flex items-center gap-0.5 px-2 py-0.5 rounded-full bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] font-bold text-[11px]">
                   +12.5%
                 </div>
               </div>
@@ -34,20 +34,12 @@ export function EarningsStatsGrid({ onWithdrawClick }: EarningsStatsGridProps) {
                 </div>
               </div>
 
-              {/* Subtext: Mobile shows "↗ vs. last week", Desktop shows "↑ +12.5% vs last week" */}
+              {/* Subtext: Consistent across all screen sizes */}
               <div className="mt-2 pt-1 flex items-center gap-1 text-[11px] lg:text-[11.5px] font-semibold text-[#16a34a]">
-                <span className="lg:hidden flex items-center gap-1">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M3 9L9 3M9 3H4.5M9 3V7.5" stroke="#16a34a" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  vs. last week
-                </span>
-                <span className="hidden lg:inline-flex items-center gap-1">
-                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                    <path d="M6 9.5V2.5M6 2.5L3 5.5M6 2.5L9 5.5" stroke="#16a34a" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  +12.5% vs last week
-                </span>
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M6 9.5V2.5M6 2.5L3 5.5M6 2.5L9 5.5" stroke="#16a34a" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                <span>+12.5% vs last week</span>
               </div>
             </div>
 
@@ -90,7 +82,7 @@ export function EarningsStatsGrid({ onWithdrawClick }: EarningsStatsGridProps) {
                   {/* Gift Box Icon */}
                   <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
                     <rect x="3" y="7.5" width="14" height="10" rx="1.8" stroke="#2563eb" strokeWidth="1.6" />
-                    <path d="M2 5.5a1.5 1.5 0 011.5-1.5h13a1.5 1.5 0 011.5 1.5v2H2v-2z" stroke="#2563eb" strokeWidth="1.6" />
+                    <path d="M2.5 5.5a1.5 1.5 0 011.5-1.5h13a1.5 1.5 0 011.5 1.5v2H2v-2z" stroke="#2563eb" strokeWidth="1.6" />
                     <path d="M10 4v13.5M6 4c0-1.1.9-2 2-2 1.3 0 2 2 2 2M14 4c0-1.1-.9-2-2-2-1.3 0-2 2-2 2" stroke="#2563eb" strokeWidth="1.4" strokeLinecap="round" />
                   </svg>
                 </div>
@@ -105,8 +97,7 @@ export function EarningsStatsGrid({ onWithdrawClick }: EarningsStatsGridProps) {
               </div>
 
               <div className="mt-2 pt-1 text-[11px] lg:text-[11.5px] font-medium text-[#64748b]">
-                <span className="lg:hidden">2 unlocked nodes</span>
-                <span className="hidden lg:inline">2 rewards</span>
+                <span>2 rewards pending</span>
               </div>
             </div>
 
@@ -126,13 +117,12 @@ export function EarningsStatsGrid({ onWithdrawClick }: EarningsStatsGridProps) {
                 <div className="text-[12px] text-[#64748b] font-medium">Total Withdrawn</div>
                 <div className="flex items-baseline gap-1 mt-0.5">
                   <span className="text-[20px] lg:text-[22px] font-black text-[#0f172a] tracking-tight">0.00</span>
-                  <span className="text-[13px] font-bold text-[#0f172a] lg:text-[#0f172a]">TROB</span>
+                  <span className="text-[13px] font-bold text-[#0f172a]">TROB</span>
                 </div>
               </div>
 
               <div className="mt-2 pt-1 text-[11px] lg:text-[11.5px] font-medium text-[#64748b]">
-                <span className="lg:hidden">No redemptions yet</span>
-                <span className="hidden lg:inline">No withdrawals yet</span>
+                <span>No withdrawals yet</span>
               </div>
             </div>
           </div>

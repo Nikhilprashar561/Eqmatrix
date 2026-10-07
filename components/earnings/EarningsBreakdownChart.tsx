@@ -42,8 +42,6 @@ export function EarningsBreakdownChart() {
                 <h2 className="text-[16px] lg:text-[17px] font-black text-[#0f172a] tracking-tight">
                   Earnings Breakdown
                 </h2>
-                {/* Mobile small indicator dot */}
-                <div className="w-2.5 h-2.5 rounded-full bg-[#2563eb] lg:hidden" />
               </div>
 
               {/* Main Content: Responsive layout */}

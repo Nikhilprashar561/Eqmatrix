@@ -90,31 +90,33 @@ export function RecentPayoutsTable() {
                 <p className="text-[12px] text-[#64748b] mt-0.5">On-chain verified records</p>
               </div>
 
-              {/* Filter Control */}
-              <div className="relative">
-                {/* Desktop: Filter Dropdown button */}
+              {/* Controls */}
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
-                  onClick={() => setTxFilterDropdownOpen(!txFilterDropdownOpen)}
-                  className="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[#e2e8f0] bg-white text-[12px] text-[#475569] font-semibold hover:bg-[#f8fafc] transition-colors cursor-pointer"
+                  className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-[#e2e8f0] bg-[#f8fafc] hover:bg-[#f1f5f9] text-[#2563eb] text-[12px] font-bold transition-colors cursor-pointer"
                 >
-                  <span>{activeTxFilter === "All" ? "All Transactions" : activeTxFilter}</span>
-                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                    <path d="M2.5 4L5 6.5 7.5 4" stroke="#64748b" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  <span>View Matrix Explorer</span>
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
+                    <path d="M3.5 10.5L10.5 3.5M10.5 3.5H5.5M10.5 3.5V8.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
 
-                {/* Mobile: Filter Pill (All with Sliders icon as in mobile screenshot) */}
-                <button
-                  type="button"
-                  onClick={() => setTxFilterDropdownOpen(!txFilterDropdownOpen)}
-                  className="lg:hidden flex items-center gap-1.5 px-3 py-1 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] text-[12px] font-bold text-[#1e293b] cursor-pointer"
-                >
-                  <span>All</span>
-                  <svg width="13" height="13" viewBox="0 0 14 14" fill="none">
-                    <path d="M2 3.5h10M4 7h6M6 10.5h2" stroke="#1e293b" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
-                </button>
+                {/* Filter Control */}
+                <div className="relative">
+                  <button
+                    type="button"
+                    onClick={() => setTxFilterDropdownOpen(!txFilterDropdownOpen)}
+                    className="flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-xl border border-[#e2e8f0] bg-white hover:bg-[#f8fafc] text-[12px] text-[#475569] font-semibold transition-colors cursor-pointer"
+                  >
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none" className="text-[#64748b]">
+                      <path d="M2 3.5h10M4 7h6M6 10.5h2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                    </svg>
+                    <span>{activeTxFilter === "All" ? "All Transactions" : activeTxFilter}</span>
+                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                      <path d="M2.5 4L5 6.5 7.5 4" stroke="#64748b" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
 
                 {/* Dropdown Menu */}
                 {txFilterDropdownOpen && (
@@ -138,90 +140,93 @@ export function RecentPayoutsTable() {
                 )}
               </div>
             </div>
+          </div>
 
-            {/* ───── DESKTOP TABLE VIEW (Visible on >= 1024px) ───── */}
-            <div className="hidden lg:block">
-              {/* Table Column Headers */}
-              <div className="grid grid-cols-12 py-3 border-b border-[#f1f5f9] text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider px-3">
-                <div className="col-span-3">TYPE</div>
-                <div className="col-span-4">DESCRIPTION</div>
-                <div className="col-span-2">AMOUNT</div>
-                <div className="col-span-2">DATE & TIME</div>
-                <div className="col-span-1 text-right pr-2">STATUS</div>
-              </div>
+            {/* ───── TABLE VIEW (Visible on >= 768px) ───── */}
+            <div className="hidden md:block overflow-x-auto no-scrollbar">
+              <div className="min-w-[680px]">
+                {/* Table Column Headers */}
+                <div className="grid grid-cols-12 py-3 border-b border-[#f1f5f9] text-[11px] font-bold text-[#94a3b8] uppercase tracking-wider px-3">
+                  <div className="col-span-3">TYPE</div>
+                  <div className="col-span-3">DESCRIPTION</div>
+                  <div className="col-span-2">AMOUNT</div>
+                  <div className="col-span-2">DATE & TIME</div>
+                  <div className="col-span-2 text-right pr-2">STATUS</div>
+                </div>
 
-              {/* Table Rows (Desktop shows top 4 transactions like Figma desktop screenshot) */}
-              <div className="divide-y divide-[#f8fafc]">
-                {filteredTransactions.slice(0, 4).map((tx) => (
-                  <div
-                    key={tx.id}
-                    className="grid grid-cols-12 items-center py-3.5 px-3 rounded-xl hover:bg-[#f8fafc] transition-colors group cursor-pointer"
-                  >
-                    {/* TYPE */}
-                    <div className="col-span-3 flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-xl bg-[#eff6ff] text-[#2563eb] flex items-center justify-center flex-shrink-0">
-                        {tx.type === "direct" && (
-                          <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
-                            <path d="M7 9a3 3 0 100-6 3 3 0 000 6zM13 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM2 17c0-2.5 3-4 6-4s6 1.5 6 4" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" />
-                          </svg>
-                        )}
-                        {tx.type === "level" && (
-                          <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
-                            <circle cx="10" cy="10" r="2.5" fill="#2563eb" />
-                            <path d="M10 2v4M10 14v4M2 10h4M14 10h4M4.5 4.5l3 3M12.5 12.5l3 3M15.5 4.5l-3 3M7.5 12.5l-3 3" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" />
-                          </svg>
-                        )}
-                        {tx.type === "referral" && (
-                          <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
-                            <rect x="3" y="7.5" width="14" height="10" rx="1.8" stroke="#2563eb" strokeWidth="1.6" />
-                            <path d="M2 5.5h16v2H2zM10 4v13.5" stroke="#2563eb" strokeWidth="1.5" />
-                          </svg>
-                        )}
+                {/* Table Rows (Desktop shows top 4 transactions like Figma desktop screenshot) */}
+                <div className="divide-y divide-[#f8fafc]">
+                  {filteredTransactions.slice(0, 4).map((tx) => (
+                    <div
+                      key={tx.id}
+                      className="grid grid-cols-12 items-center py-3.5 px-3 rounded-xl hover:bg-[#f8fafc] transition-colors group cursor-pointer"
+                    >
+                      {/* TYPE */}
+                      <div className="col-span-3 flex items-center gap-3 min-w-0 pr-2">
+                        <div className="w-9 h-9 rounded-xl bg-[#eff6ff] text-[#2563eb] flex items-center justify-center flex-shrink-0">
+                          {tx.type === "direct" && (
+                            <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+                              <path d="M7 9a3 3 0 100-6 3 3 0 000 6zM13 10a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM2 17c0-2.5 3-4 6-4s6 1.5 6 4" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" />
+                            </svg>
+                          )}
+                          {tx.type === "level" && (
+                            <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+                              <circle cx="10" cy="10" r="2.5" fill="#2563eb" />
+                              <path d="M10 2v4M10 14v4M2 10h4M14 10h4M4.5 4.5l3 3M12.5 12.5l3 3M15.5 4.5l-3 3M7.5 12.5l-3 3" stroke="#2563eb" strokeWidth="1.6" strokeLinecap="round" />
+                            </svg>
+                          )}
+                          {tx.type === "referral" && (
+                            <svg width="17" height="17" viewBox="0 0 20 20" fill="none">
+                              <rect x="3" y="7.5" width="14" height="10" rx="1.8" stroke="#2563eb" strokeWidth="1.6" />
+                              <path d="M2 5.5h16v2H2zM10 4v13.5" stroke="#2563eb" strokeWidth="1.5" />
+                            </svg>
+                          )}
+                        </div>
+                        <span className="text-[13px] font-bold text-[#0f172a] whitespace-nowrap truncate">{tx.typeName}</span>
                       </div>
-                      <span className="text-[13px] font-bold text-[#0f172a]">{tx.typeName}</span>
-                    </div>
 
-                    {/* DESCRIPTION */}
-                    <div className="col-span-4 pr-3">
-                      <div className="text-[13px] font-bold text-[#0f172a]">{tx.description}</div>
-                      <div className="text-[12px] text-[#64748b]">{tx.subDescriptionDesktop}</div>
-                    </div>
+                      {/* DESCRIPTION */}
+                      <div className="col-span-3 pr-3 min-w-0">
+                        <div className="text-[13px] font-bold text-[#0f172a] truncate">{tx.description}</div>
+                        <div className="text-[12px] text-[#64748b] truncate">{tx.subDescriptionDesktop}</div>
+                      </div>
 
-                    {/* AMOUNT */}
-                    <div className="col-span-2">
-                      <span className="text-[13.5px] font-black text-[#0f172a]">
-                        +{tx.amount.toFixed(2)} TROB
-                      </span>
-                    </div>
+                      {/* AMOUNT */}
+                      <div className="col-span-2 whitespace-nowrap">
+                        <span className="text-[13.5px] font-black text-[#0f172a]">
+                          +{tx.amount.toFixed(2)} TROB
+                        </span>
+                      </div>
 
-                    {/* DATE & TIME */}
-                    <div className="col-span-2">
-                      <div className="text-[12px] font-semibold text-[#0f172a]">{tx.date}</div>
-                      <div className="text-[11px] text-[#64748b]">{tx.time}</div>
-                    </div>
+                      {/* DATE & TIME */}
+                      <div className="col-span-2 whitespace-nowrap">
+                        <div className="text-[12px] font-semibold text-[#0f172a]">{tx.date}</div>
+                        <div className="text-[11px] text-[#64748b]">{tx.time}</div>
+                      </div>
 
-                    {/* STATUS + CHEVRON */}
-                    <div className="col-span-1 flex items-center justify-end gap-2 pr-1">
-                      <span className="px-2.5 py-1 rounded-full bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] text-[11px] font-bold">
-                        {tx.status}
-                      </span>
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                        className="text-[#94a3b8] group-hover:text-[#2563eb] group-hover:translate-x-0.5 transition-all"
-                      >
-                        <path d="M5 3.5L8.5 7 5 10.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
+                      {/* STATUS + CHEVRON */}
+                      <div className="col-span-2 flex items-center justify-end gap-2 pr-1">
+                        <span className="px-2.5 py-1 rounded-full bg-[#ecfdf5] border border-[#bbf7d0] text-[#16a34a] text-[11px] font-bold whitespace-nowrap shadow-2xs">
+                          {tx.status}
+                        </span>
+                        <svg
+                          width="14"
+                          height="14"
+                          viewBox="0 0 14 14"
+                          fill="none"
+                          className="text-[#94a3b8] group-hover:text-[#2563eb] group-hover:translate-x-0.5 transition-all flex-shrink-0"
+                        >
+                          <path d="M5 3.5L8.5 7 5 10.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* ───── MOBILE LIST VIEW (Visible on < 1024px) ───── */}
-            <div className="lg:hidden divide-y divide-[#f1f5f9]">
+            {/* ───── MOBILE LIST VIEW (Visible on < 768px) ───── */}
+            <div className="md:hidden divide-y divide-[#f1f5f9]">
               {filteredTransactions.map((tx) => (
                 <div
                   key={tx.id}
@@ -281,8 +286,8 @@ export function RecentPayoutsTable() {
               ))}
             </div>
 
-            {/* Bottom Button (Visible on Mobile as in screenshot) */}
-            <div className="mt-4 pt-1 lg:hidden">
+            {/* Bottom Button for small screens (< sm) */}
+            <div className="mt-4 pt-1 sm:hidden">
               <button
                 type="button"
                 className="w-full py-2.5 sm:py-3 bg-[#f8fafc] hover:bg-[#f1f5f9] active:bg-[#edf5ff] border border-[#e2e8f0] rounded-xl text-[#2563eb] font-bold text-[13px] flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
