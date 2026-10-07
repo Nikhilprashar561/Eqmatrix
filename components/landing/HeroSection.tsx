@@ -58,16 +58,19 @@ export function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center gap-3">
-              <Link href="/" className="flex items-center group">
+            <div className="flex items-center">
+              <Link href="/" className="relative flex items-center group py-1">
                 <Image
-                  src="/image 36.png"
+                  src="/equora-logo.png"
                   alt="EQUORA.FI"
-                  width={130}
-                  height={44}
+                  width={184}
+                  height={42}
                   priority
-                  className="h-8 sm:h-9 md:h-10 w-auto object-contain transition-transform group-hover:scale-105"
+                  className="h-8 sm:h-9 md:h-10 lg:h-[42px] w-auto object-contain transition-all duration-300 group-hover:scale-[1.02]"
                 />
+                <span className="absolute left-[24.3%] bottom-0 sm:bottom-[1px] text-[7.5px] sm:text-[8.5px] md:text-[9.5px] lg:text-[10px] font-extrabold text-[#0279e3] tracking-[0.24em] uppercase leading-none select-none pointer-events-none">
+                  Matrix
+                </span>
               </Link>
             </div>
 
@@ -160,8 +163,20 @@ export function HeroSection() {
       >
         {/* Top Content Block: Close Button & Navigation Links */}
         <div className="flex flex-col">
-          {/* Top Bar: Close Button */}
-          <div className="flex items-center justify-end pb-4 shrink-0">
+          {/* Top Bar: Logo & Close Button */}
+          <div className="flex items-center justify-between pb-4 border-b border-slate-100 shrink-0">
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="relative flex items-center group">
+              <Image
+                src="/equora-logo.png"
+                alt="EQUORA.FI"
+                width={140}
+                height={32}
+                className="h-7 w-auto object-contain"
+              />
+              <span className="absolute left-[24.3%] bottom-0 text-[7px] font-extrabold text-[#0279e3] tracking-[0.24em] uppercase leading-none select-none pointer-events-none">
+                Matrix
+              </span>
+            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(false)}

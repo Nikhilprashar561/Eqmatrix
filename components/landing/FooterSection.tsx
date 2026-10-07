@@ -40,37 +40,18 @@ export function FooterSection() {
             {/* Column 1: Brand & Socials (Figma Exact) */}
             <div className="sm:col-span-2 md:col-span-3 lg:col-span-1 flex flex-col items-start">
               {/* Logo & Brand Name */}
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#3848e8] via-[#4f56f4] to-[#6366f1] flex items-center justify-center shadow-md shadow-blue-500/25 p-2 shrink-0">
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="w-5 h-5 text-white"
-                  >
-                    {/* Outer rounded geometric polygon */}
-                    <polygon
-                      points="12,2.5 18.5,5.5 21.5,12 18.5,18.5 12,21.5 5.5,18.5 2.5,12 5.5,5.5"
-                      stroke="currentColor"
-                      strokeWidth="1.8"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    {/* Inner concentric gem */}
-                    <polygon
-                      points="12,6.5 16.5,9 16.5,15 12,17.5 7.5,15 7.5,9"
-                      stroke="currentColor"
-                      strokeWidth="1.4"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      opacity="0.9"
-                    />
-                    <circle cx="12" cy="12" r="1.3" fill="currentColor" />
-                  </svg>
-                </div>
-                <span className="text-xl sm:text-2xl font-black tracking-tight text-[#0b132b]">
-                  EQUORA_Fi
+              <Link href="/" className="relative inline-flex items-center mb-3.5 group">
+                <Image
+                  src="/equora-logo.png"
+                  alt="EQUORA.FI"
+                  width={184}
+                  height={42}
+                  className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-[1.02]"
+                />
+                <span className="absolute left-[24.3%] bottom-0 sm:bottom-[0.5px] text-[7.5px] sm:text-[8.5px] font-extrabold text-[#0279e3] tracking-[0.24em] uppercase leading-none select-none pointer-events-none">
+                  Matrix
                 </span>
-              </div>
+              </Link>
 
               {/* Eyebrow Tagline */}
               <div className="text-[10px] sm:text-[11px] font-bold text-slate-400 tracking-[0.14em] uppercase leading-tight mb-2.5">
