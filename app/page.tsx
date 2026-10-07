@@ -5,6 +5,7 @@ import {
   ActivitySection,
   MatrixMechanismSection,
   PoolsSection,
+  BlindBoxSection,
   FaqSection,
   FooterSection,
 } from "@/components/landing";
@@ -22,6 +23,8 @@ export default function Home() {
       <MatrixMechanismSection />
 
       <PoolsSection />
+
+      <BlindBoxSection />
 
       <FaqSection />
 

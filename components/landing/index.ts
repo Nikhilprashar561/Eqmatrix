@@ -3,6 +3,7 @@ export { HowItWorksSection } from "./HowItWorksSection";
 export { ActivitySection } from "./ActivitySection";
 export { MatrixMechanismSection } from "./MatrixMechanismSection";
 export { PoolsSection } from "./PoolsSection";
+export { BlindBoxSection } from "./BlindBoxSection";
 export { FaqSection } from "./FaqSection";
 export { FooterSection } from "./FooterSection";
 export { HeroVideo } from "./HeroVideo";
