@@ -2,7 +2,9 @@ import React from "react";
 import {
   HeroSection,
   HowItWorksSection,
+  ActivitySection,
   MatrixMechanismSection,
+  PoolsSection,
   FaqSection,
   FooterSection,
 } from "@/components/landing";
@@ -15,7 +17,11 @@ export default function Home() {
 
       <HowItWorksSection />
 
+      <ActivitySection />
+
       <MatrixMechanismSection />
+
+      <PoolsSection />
 
       <FaqSection />
 

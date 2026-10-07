@@ -6,14 +6,15 @@ import Image from "next/image";
 export function HowItWorksSection() {
   return (
     <section
-      id="how-it-works"
+      id="about"
       className="w-full pt-8 pb-12 sm:pt-12 sm:pb-16 lg:pt-14 lg:pb-18 bg-[#f1f5f9] relative z-10 scroll-mt-[70px]"
     >
+      <span id="how-it-works" className="sr-only" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
           <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] text-[#2563eb] mb-3 block">
-            HOW IT WORKS
+            ABOUT EQUORA
           </span>
           <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-black text-[#0b132b] tracking-tight leading-[1.1] mb-4">
             A Simple <br />

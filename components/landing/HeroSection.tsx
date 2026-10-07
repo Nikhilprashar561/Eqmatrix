@@ -8,12 +8,13 @@ import { HeroVideo } from "./HeroVideo";
 export function HeroSection() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeNav, setActiveNav] = useState("#how-it-works");
+  const [activeNav, setActiveNav] = useState("#about");
 
   const navLinks = [
-    { label: "How It Works", href: "#how-it-works" },
+    { label: "About", href: "#about" },
     { label: "Levels", href: "#levels" },
-    { label: "FAQ", href: "#faq" },
+    { label: "Activity", href: "#activity" },
+    { label: "Pools", href: "#pools" },
   ];
 
   // Track scroll position to update navbar appearance
@@ -72,15 +73,23 @@ export function HeroSection() {
 
             {/* Desktop Navigation Links */}
             <nav className="hidden lg:flex items-center gap-6 xl:gap-8 shrink-0">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors whitespace-nowrap"
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeNav === link.href;
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setActiveNav(link.href)}
+                    className={`text-sm font-semibold transition-colors whitespace-nowrap ${
+                      isActive
+                        ? "text-blue-600 font-bold"
+                        : "text-slate-700 hover:text-blue-600"
+                    }`}
+                  >
+                    {link.label}
+                  </a>
+                );
+              })}
             </nav>
 
             {/* Right Action Button & Mobile Toggle */}
@@ -280,7 +289,7 @@ export function HeroSection() {
               <div className="flex flex-wrap items-center gap-3.5 sm:gap-4.5 mb-5 sm:mb-6">
                 {/* Primary: Start Now → */}
                 <a
-                  href="#how-it-works"
+                  href="#about"
                   className="px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-[#2563eb] hover:bg-blue-600 text-white font-semibold text-sm sm:text-base inline-flex items-center gap-2 shadow-md shadow-blue-500/25 transition-all hover:gap-3 active:scale-95"
                 >
                   <span>Start Now</span>

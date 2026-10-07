@@ -161,28 +161,28 @@ export function FooterSection() {
               </h4>
               <ul className="space-y-2.5 sm:space-y-3.5 text-xs sm:text-[13px] text-slate-500 font-medium">
                 <li>
-                  <Link href="#how-it-works" className="hover:text-blue-600 transition-colors">
-                    How It Works
+                  <Link href="#about" className="hover:text-blue-600 transition-colors">
+                    About
                   </Link>
                 </li>
                 <li>
-                  <Link href="#ranks" className="hover:text-blue-600 transition-colors">
-                    Ranks
+                  <Link href="#levels" className="hover:text-blue-600 transition-colors">
+                    Levels
                   </Link>
                 </li>
                 <li>
-                  <Link href="#rewards" className="hover:text-blue-600 transition-colors">
-                    Rewards
+                  <Link href="#activity" className="hover:text-blue-600 transition-colors">
+                    Activity
                   </Link>
                 </li>
                 <li>
-                  <Link href="#roadmap" className="hover:text-blue-600 transition-colors">
-                    Roadmap
+                  <Link href="#pools" className="hover:text-blue-600 transition-colors">
+                    Pools
                   </Link>
                 </li>
                 <li>
-                  <Link href="#download" className="hover:text-blue-600 transition-colors">
-                    Download
+                  <Link href="#faq" className="hover:text-blue-600 transition-colors">
+                    FAQ
                   </Link>
                 </li>
               </ul>
